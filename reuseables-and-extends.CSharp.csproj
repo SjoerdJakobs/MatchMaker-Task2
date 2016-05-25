@@ -75,9 +75,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\bugged\graplingHookClean.cs" />
     <Compile Include="Assets\explosion.cs" />
     <Compile Include="Assets\extensions\Extensions.cs" />
-    <Compile Include="Assets\reuseableScripts\testScript.cs" />
+    <Compile Include="Assets\livingWithStats\IDamageable.cs" />
+    <Compile Include="Assets\livingWithStats\LivingEntity.cs" />
+    <Compile Include="Assets\reuseableScripts\CamScript.cs" />
+    <Compile Include="Assets\reuseableScripts\PlayerMovement.cs" />
+    <Compile Include="Assets\reuseableScripts\rotateObject.cs" />
+    <Compile Include="Assets\testScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

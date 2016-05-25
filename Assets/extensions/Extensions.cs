@@ -99,7 +99,11 @@ public static class Extensions
         RaycastHit[] hit = Physics.SphereCastAll(ray, explosionRadius, 0.1f);
         foreach(RaycastHit i in hit)
         {
-            //i.rigidbody.knockback(Vector3.forward, force, absolute);
+            if(i.rigidbody != null)
+            {
+                Vector3 direct = (i.transform.position - G.transform.position);
+                i.rigidbody.knockback(direct, force, absolute);
+            }
             Debug.Log(i);
         }
         if(remove)
