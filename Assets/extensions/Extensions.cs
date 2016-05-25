@@ -66,7 +66,7 @@ public static class Extensions
             Vector3 reversedForce = normalizedVelocity * (reverseForce*r.mass);
             r.AddForce(-reversedForce);
         }
-        Debug.Log(velocity);    
+        //Debug.Log(velocity);    
     }
     public static void limitVelocityHard3D(this Rigidbody r, float maxVelocity)
     {
@@ -93,8 +93,18 @@ public static class Extensions
         r.AddForce(Vector3.zero);
         r.AddRelativeForce(direction * force, ForceMode.Impulse);
     }
-    public static void explosion(this GameObject G, float force, bool absolute = false, bool remove = false)
+    public static void explosion(this GameObject G, float force, float explosionRadius, bool absolute, bool remove)
     {
-
+        Ray ray = new Ray(G.transform.position,Vector3.down);
+        RaycastHit[] hit = Physics.SphereCastAll(ray, explosionRadius, 0.1f);
+        foreach(RaycastHit i in hit)
+        {
+            //i.rigidbody.knockback(Vector3.forward, force, absolute);
+            Debug.Log(i);
+        }
+        if(remove)
+        {
+            GameObject.Destroy(G);
+        }        
     }
 }
