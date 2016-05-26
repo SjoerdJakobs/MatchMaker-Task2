@@ -49,6 +49,10 @@ public class LivingEntity : MonoBehaviour, IDamageable
             damage = damage * (1-(((armor*((100-pen)/100)) * 0.80f *0.75f)/100));
         }
     }
+    public void TakeDamgOverTime()
+    {
+
+    }
 
     virtual protected void death()//when would this be used >_>
     {
