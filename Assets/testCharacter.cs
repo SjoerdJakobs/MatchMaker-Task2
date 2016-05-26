@@ -3,11 +3,12 @@ using System.Collections;
 
 public class testCharacter : LivingEntity {
 
+    public float testPen;
+    public bool testMagic;
     // Use this for initialization
     protected override void Start () {
         base.Start();
-        TakeDamgOverTime(10, 10, 1, true);
-
+        TakeDamgOverTime(10, 10, testPen, testMagic);
 
     }
 	
