@@ -17,6 +17,7 @@ public class testScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        
         rigid = gameObject.GetComponent<Rigidbody>();
 	    if(transform.isDistanceBiggerThan(otherTrans.position, range))
         {

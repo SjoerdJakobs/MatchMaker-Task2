@@ -17,6 +17,12 @@ public class explosion : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        int count = 0;
+        foreach (RaycastHit i in transform.getWithinSphere(10))
+        {
+            count++;
+            //print(i.transform.position + " object " + count);
+        }
         gameObject.explosion(explosionForce, explosionRadius, absoluteKnockback,removeOnExplosion);
 	}
 	

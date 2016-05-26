@@ -96,7 +96,7 @@ public static class Extensions
     public static void explosion(this GameObject G, float force, float explosionRadius, bool absolute, bool remove)
     {
         Ray ray = new Ray(G.transform.position,Vector3.down);
-        RaycastHit[] hit = Physics.SphereCastAll(ray, explosionRadius, 0.1f);
+        RaycastHit[] hit = Physics.SphereCastAll(ray, explosionRadius, 0.001f);
         foreach(RaycastHit i in hit)
         {
             if(i.rigidbody != null)
@@ -110,5 +110,12 @@ public static class Extensions
         {
             GameObject.Destroy(G);
         }        
+    }
+    public static RaycastHit[] getWithinSphere(this Transform T, float checkRadius)
+    {
+        //this return every object within range of a sphere with the checkRadius radius
+        Ray ray = new Ray(T.position, Vector3.down);
+        RaycastHit[] hit = Physics.SphereCastAll(ray, checkRadius, 0.001f);
+        return(hit);
     }
 }

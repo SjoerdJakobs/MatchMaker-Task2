@@ -82,7 +82,9 @@
     <Compile Include="Assets\livingWithStats\LivingEntity.cs" />
     <Compile Include="Assets\reuseableScripts\CamScript.cs" />
     <Compile Include="Assets\reuseableScripts\PlayerMovement.cs" />
+    <Compile Include="Assets\reuseableScripts\Projectile.cs" />
     <Compile Include="Assets\reuseableScripts\rotateObject.cs" />
+    <Compile Include="Assets\testCharacter.cs" />
     <Compile Include="Assets\testScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
