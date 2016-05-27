@@ -3,6 +3,8 @@ using System.Collections;
 
 public class testCharacter : LivingEntity {
 
+    public GameObject magicCube;
+    public Transform target;
     public float testPen;
     public bool testMagic;
     // Use this for initialization
@@ -11,9 +13,14 @@ public class testCharacter : LivingEntity {
         TakeDamgOverTime(10, 10, testPen, testMagic);
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            gameObject.skillShotProjectile(magicCube, target.position, 30,armorPen , true, 100);
+            Instantiate(magicCube, transform.position, Quaternion.identity);
+        }
+    }
 }

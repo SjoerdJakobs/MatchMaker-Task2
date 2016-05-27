@@ -80,6 +80,7 @@
     <Compile Include="Assets\extensions\Extensions.cs" />
     <Compile Include="Assets\livingWithStats\IDamageable.cs" />
     <Compile Include="Assets\livingWithStats\LivingEntity.cs" />
+    <Compile Include="Assets\livingWithStats\livingEnitityStaticAttacks.cs" />
     <Compile Include="Assets\reuseableScripts\CamScript.cs" />
     <Compile Include="Assets\reuseableScripts\PlayerMovement.cs" />
     <Compile Include="Assets\reuseableScripts\Projectile.cs" />
