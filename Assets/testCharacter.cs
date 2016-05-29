@@ -10,7 +10,7 @@ public class testCharacter : LivingEntity {
     // Use this for initialization
     protected override void Start () {
         base.Start();
-        TakeDamgOverTime(10, 10, testPen, testMagic);
+        TakeDamgOverTime(10, 10, testPen, 25,testMagic);
 
     }
 
@@ -19,7 +19,7 @@ public class testCharacter : LivingEntity {
     {
         if (Input.GetMouseButtonDown(0))
         {
-            gameObject.skillShotProjectile(magicCube, target.position, 30,armorPen , true, 100);
+            gameObject.skillShotProjectile(magicCube, target.position, 30,armorPen, true, 50, 100);
             Instantiate(magicCube, transform.position, Quaternion.identity);
         }
     }

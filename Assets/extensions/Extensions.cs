@@ -118,4 +118,13 @@ public static class Extensions
         RaycastHit[] hit = Physics.SphereCastAll(ray, checkRadius, 0.001f);
         return(hit);
     }
+    public static RaycastHit mouseClickPos()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit))
+        {
+        }
+        return (hit);   
+    }
 }

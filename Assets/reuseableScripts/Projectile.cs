@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour {
     public bool _physical;
 
     private float rangeTraveled;//how much the bullet has gone
+    public float _scaling;
     public float _maxRange;//the max range the bullet will go
     public float _pen;
     public float _projectileSpeed;//the _speed of the projectile >_>
@@ -52,7 +53,7 @@ public class Projectile : MonoBehaviour {
         IDamageable damageableObject = hit.collider.GetComponent<IDamageable>();//check for component idamagable on the hit object
         if(damageableObject != null)//"if object has idamagable"
         {
-            damageableObject.TakeDamg(_damage, _pen, _physical);//_damage it
+            damageableObject.TakeDamg(_damage, _pen, _scaling, _physical);//_damage it
         }
         //Debug.Log(hit.collider.gameObject.name);
         GameObject.Destroy(gameObject);//destroy this object(the projectile)

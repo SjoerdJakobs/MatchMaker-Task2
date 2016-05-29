@@ -73,43 +73,51 @@ public class LivingEntity : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeTrueDamg(float damage)
+    public void TakeTrueDamg(float damage, float scaling, bool physical)
     {
+        if(physical)
+        {
+            damage = damage + (attackDamage * (scaling / 100));
+        }
+        else
+        {
+            damage = damage + (magicDamage * (scaling / 100));
+        }
         health -= damage;
         checkDeath();
     }
-    public void TakeDamg(float damage, float pen, bool physical)
+    public void TakeDamg(float damage, float pen, float scaling, bool physical)
     {
         if (physical)
         {
             float armorPenetrated = armor * (1 - (pen / 100));
-            damage = damage * (1-(armorPenetrated / (armorPenetrated + 100)));
+            damage = (damage + (attackDamage * (scaling / 100))) * (1-(armorPenetrated / (armorPenetrated + 100)));
         }
         else
         {
             float magicPenetrated = magicResist * (1 - (pen / 100));
-            damage = damage * (1 - (magicPenetrated / (magicPenetrated + 100)));
+            damage = (damage + (magicDamage * (scaling / 100))) * (1 - (magicPenetrated / (magicPenetrated + 100)));
         }
         health -= damage;
         checkDeath();
     }
 
-    public void TakeDamgOverTime(float time, float damagePerTick, float pen, bool physical)
+    public void TakeDamgOverTime(float time, float damagePerTick, float pen, float scaling, bool physical)
     {
-        StartCoroutine(TakeDamgOverTimeCoroutine( time, damagePerTick, pen, physical));
+        StartCoroutine(TakeDamgOverTimeCoroutine( time, damagePerTick, pen, scaling, physical));
     }
 
-    IEnumerator TakeDamgOverTimeCoroutine(float time, float damagePerTick, float pen, bool physical)
+    IEnumerator TakeDamgOverTimeCoroutine(float time, float damagePerTick, float pen, float scaling, bool physical)
     {
         if (physical)
         {
             float armorPenetrated = armor * (1 - (pen / 100));
-            damagePerTick = damagePerTick * (1-(armorPenetrated / (armorPenetrated + 100)));
+            damagePerTick = (damagePerTick + (attackDamage * (scaling / 100))) * (1-(armorPenetrated / (armorPenetrated + 100)));
         }
         else
         {
             float magicPenetrated = magicResist * (1 - (pen / 100));
-            damagePerTick = damagePerTick * (1 - (magicPenetrated/ (magicPenetrated + 100)));
+            damagePerTick = (damagePerTick + (magicDamage * (scaling / 100))) * (1 - (magicPenetrated/ (magicPenetrated + 100)));
         }
         while (time > 0)
         {
