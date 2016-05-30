@@ -1,10 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public class SkillShot
+{
+    Projectile projectil;
+    private float _cooldown;
+    public float Cooldown
+    {
+        get { return _cooldown; }
+    }
+
+    bool _onCooldown;
+
+    /*IEnumerator Cooldown()
+    {
+        float timer = _cooldown;
+        _onCooldown = true;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        _onCooldown = false;
+    }*/
+}
 public class testCharacter : LivingEntity {
 
     public GameObject magicCube;
-    public Transform target;
     public float testPen;
     public bool testMagic;
     // Use this for initialization
@@ -17,9 +39,11 @@ public class testCharacter : LivingEntity {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        transform.lookAtMouse(10);
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            gameObject.skillShotProjectile(magicCube, target.position, 30,armorPen, true, 50, 100);
+            Vector3 target = transform.mousePos();
+            gameObject.skillShotProjectile(magicCube, target, 30,armorPen, true, 50, 100);
             Instantiate(magicCube, transform.position, Quaternion.identity);
         }
     }

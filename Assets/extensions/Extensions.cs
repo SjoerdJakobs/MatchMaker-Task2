@@ -104,7 +104,7 @@ public static class Extensions
                 Vector3 direct = (i.transform.position - G.transform.position);
                 i.rigidbody.knockback(direct, force, absolute);
             }
-            Debug.Log(i);
+            //Debug.Log(i);
         }
         if(remove)
         {
@@ -118,13 +118,41 @@ public static class Extensions
         RaycastHit[] hit = Physics.SphereCastAll(ray, checkRadius, 0.001f);
         return(hit);
     }
-    public static RaycastHit mouseClickPos()
+
+    public static RaycastHit hitByMouse(this GameObject C)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit))
         {
+            return (hit);
         }
-        return (hit);   
+        return (new RaycastHit());
+    }
+    public static void lookAtMouse(this Transform T, float speed)
+    {
+        Plane playerPlane = new Plane(Vector3.up, T.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        float hitdist = 0.0f;
+        if (playerPlane.Raycast(ray, out hitdist))
+        {
+            Vector3 targetPoint = ray.GetPoint(hitdist);
+
+            Quaternion targetRotation = Quaternion.LookRotation(targetPoint - T.position);
+
+            T.rotation = Quaternion.Slerp(T.rotation, targetRotation, speed * Time.deltaTime);
+        }
+    }
+    public static Vector3 mousePos(this Transform T)
+    {
+        Plane playerPlane = new Plane(Vector3.up, T.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        float hitdist = 0.0f;
+        if (playerPlane.Raycast(ray, out hitdist))
+        {
+            return (ray.GetPoint(hitdist));
+        }
+        return (new Vector3(0,0,0));
     }
 }

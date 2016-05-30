@@ -123,7 +123,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         {
             time--;
             health -= damagePerTick;
-            print("woop woop");
+            //print("woop woop");
             checkDeath();
             yield return new WaitForSeconds(1);
         }
