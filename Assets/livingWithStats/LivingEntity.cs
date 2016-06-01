@@ -3,42 +3,27 @@ using System.Collections;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    [SerializeField]
-    protected float Level = 1;
-    [SerializeField]
-    protected float maxHealth = 100;//how much health at the start
-    [SerializeField]
-    protected float health;//how much health
-    [SerializeField]
-    protected float healthRegen = 1;
-    [SerializeField]
-    protected float maxMana = 100;
-    [SerializeField]
-    protected float mana;
-    [SerializeField]
-    protected float manaRegen = 8;
-    [SerializeField]
-    protected float armor = 20;//how much armor
-    [SerializeField]
-    protected float armorPen = 0;//how much armor penetration
-    [SerializeField]
-    protected float magicResist =15;//how much magicResist
-    [SerializeField]
-    protected float magicPen = 0;//how much magic penetration
-    [SerializeField]
-    protected float moveMentspeed = 10;//how fast you move
-    [SerializeField]
-    protected float tenacity = 0;//more tenacity means less time slowed or stunned
-    [SerializeField]
-    protected float sizeMod = 1;//scale * sizeMod
-    [SerializeField]
-    protected float attackDamage = 10;//modefier for physical attack
-    [SerializeField]
-    protected float magicDamage = 0;//modefier for magic attack
-    [SerializeField]
-    protected float attackspeed = 1.2f;
-    [SerializeField]
-    protected float cooldownReduction = 0;
+    [SerializeField] protected float Level = 1;
+    [SerializeField] protected float xp = 0;
+    [SerializeField] protected float xpOnDeath;
+    [SerializeField] protected float maxHealth = 100;//how much health at the start
+    [SerializeField] protected float health;//how much health
+    [SerializeField] protected float healthRegen = 1;
+    [SerializeField] protected float maxMana = 100;
+    [SerializeField] protected float mana;
+    [SerializeField] protected float manaRegen = 8;
+    [SerializeField] protected float armor = 20;//how much armor
+    [SerializeField] protected float armorPen = 0;//how much armor penetration
+    [SerializeField] protected float magicResist =15;//how much magicResist
+    [SerializeField] protected float magicPen = 0;//how much magic penetration
+    [SerializeField] protected float moveMentspeed = 10;//how fast you move
+    [SerializeField] protected float tenacity = 0;//more tenacity means less time slowed or stunned
+    [SerializeField] protected float sizeMod = 1;//scale * sizeMod
+    [SerializeField] protected float attackDamage = 10;//modefier for physical attack
+    [SerializeField] protected float magicDamage = 0;//modefier for magic attack
+    [SerializeField] protected float attackspeed = 1.2f;
+    [SerializeField] protected float cooldownReduction = 0;
+    protected IDamageable enemyCaster;
     protected bool dead;//to be or not to be :)
 
     public event System.Action OnDeath;
@@ -48,6 +33,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         health = maxHealth;//sets health 
         mana = maxMana;
         StartCoroutine(regenTimer());
+        enemyCaster = GetComponent<IDamageable>();
     }
 
     IEnumerator regenTimer()
@@ -72,7 +58,18 @@ public class LivingEntity : MonoBehaviour, IDamageable
             mana = maxMana;
         }
     }
-
+    public void returnCaster(GameObject caster)
+    {
+        enemyCaster = caster.GetComponent<IDamageable>();
+    }
+    public void addXp(float addedXp)
+    {
+        xp += addedXp;
+    }
+    void giveXp()
+    {
+        enemyCaster.addXp(xpOnDeath);
+    }
     public void TakeTrueDamg(float damage, float scaling, bool physical)
     {
         if(physical)
@@ -196,6 +193,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     virtual protected void death()//when would this be used >_>
     {
+        giveXp();
         dead = true;
         if (OnDeath != null)
         {

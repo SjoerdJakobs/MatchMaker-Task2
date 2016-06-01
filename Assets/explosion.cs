@@ -17,17 +17,14 @@ public class explosion : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Rigidbody rig;
-        rig = GetComponent<Rigidbody>();
-        rig.velocity = new Vector3(0,0,1);
         int count = 0;
-        /*foreach (RaycastHit i in transform.getWithinSphere(10))
+        foreach (RaycastHit i in transform.getWithinSphere(10))
         {
             count++;
             //print(i.transform.position + " object " + count);
         }
         gameObject.explosion(explosionForce, explosionRadius, absoluteKnockback,removeOnExplosion);
-        Vector3 pos = gameObject.hitByMouse().point;*/
+        Vector3 pos = gameObject.hitByMouse().point;
 	}
 	
 	// Update is called once per frame

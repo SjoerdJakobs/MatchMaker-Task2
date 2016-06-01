@@ -1,29 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SkillShot
-{
-    Projectile projectil;
-    private float _cooldown;
-    public float Cooldown
-    {
-        get { return _cooldown; }
-    }
-
-    bool _onCooldown;
-
-    /*IEnumerator Cooldown()
-    {
-        float timer = _cooldown;
-        _onCooldown = true;
-        while (timer > 0)
-        {
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-        _onCooldown = false;
-    }*/
-}
 public class testCharacter : LivingEntity {
 
     public GameObject magicCube;
@@ -43,8 +20,32 @@ public class testCharacter : LivingEntity {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Vector3 target = transform.mousePos();
-            gameObject.skillShotProjectile(magicCube, target, 30,armorPen, true, 50, 100);
+            gameObject.skillShotProjectile(magicCube, target, 30, armorPen, true, 50, 100);
             Instantiate(magicCube, transform.position, Quaternion.identity);
+            //TakeDamgOverTime(10, 10, testPen, 25, testMagic);
         }
     }
 }
+/*public class SkillShot
+{
+    Projectile projectil;
+    private float _cooldown;
+    public float Cooldown
+    {
+        get { return _cooldown; }
+    }
+
+    bool _onCooldown;
+
+    IEnumerator Cooldown()
+    {
+        float timer = _cooldown;
+        _onCooldown = true;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        _onCooldown = false;
+    }
+}*/

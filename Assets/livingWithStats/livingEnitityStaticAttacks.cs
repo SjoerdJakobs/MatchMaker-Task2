@@ -4,9 +4,9 @@ using System.Collections;
 public static class livingEnitityStaticAttacks {
     public static void skillShotProjectile(this GameObject T, GameObject g, Vector3 target, float damage, float pen, bool physical, float scaling, float range = 10,float speed = 10)
     {
-        GameObject caster = T;
         g.transform.rotation = Quaternion.LookRotation(target);
         Projectile proj = g.GetComponent<Projectile>();
+        proj._caster = T;
         proj._scaling = scaling;
         proj._damage = damage;
         proj._projectileSpeed = speed;

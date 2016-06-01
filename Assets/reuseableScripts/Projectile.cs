@@ -5,8 +5,8 @@ public class Projectile : MonoBehaviour {
 
     [SerializeField]
     private LayerMask collisionMask;//layer wich the projectile checks for
-
     public Vector3 _target;
+    public GameObject _caster;
     private Vector3 aim;
 
     public bool _physical;
@@ -53,6 +53,7 @@ public class Projectile : MonoBehaviour {
         IDamageable damageableObject = hit.collider.GetComponent<IDamageable>();//check for component idamagable on the hit object
         if(damageableObject != null)//"if object has idamagable"
         {
+            damageableObject.returnCaster(_caster);
             damageableObject.TakeDamg(_damage, _pen, _scaling, _physical);//_damage it
         }
         //Debug.Log(hit.collider.gameObject.name);
