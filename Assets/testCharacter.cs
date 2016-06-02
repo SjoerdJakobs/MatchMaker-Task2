@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class testCharacter : LivingEntity {
 
     public GameObject magicCube;
 
+    [SerializeField]
+    private Text stats;
+    [SerializeField]
+    private Text stats2;
     private magicMissile magicMiss;
     private magicProjectile magicProj;
     private giantsSpell giant;
@@ -15,6 +20,23 @@ public class testCharacter : LivingEntity {
         magicProj = GetComponent<magicProjectile>();
         magicMiss = GetComponent<magicMissile>();
         giant = GetComponent<giantsSpell>();
+    }
+
+    protected override void setAndCheckStats()
+    {
+        base.setAndCheckStats();
+        stats.text = "AttackDamage: " + attackDamage.ToString() +
+            "\n" + "Armor: " + armor.ToString() +
+            "\n" + "MagicRes: " + magicResist.ToString() +
+            "\n" + "HPregen: " + healthRegen.ToString() +
+            "\n" + "CDreduction: " + cooldownReduction.ToString() +
+            "\n" + "MoveSpeed: " + moveMentspeed.ToString();
+        stats2.text = "MagicDamage: " + magicDamage.ToString() +
+            "\n" + "Armorpen: " + armorPen.ToString() +
+            "\n" + "Magicpen: " + magicPen.ToString() +
+            "\n" + "MPregen: " + manaRegen.ToString() +
+            "\n" + "tenacity: " + tenacity.ToString() +
+            "\n" + "attackSpeed" + attackspeed.ToString();
     }
 
     // Update is called once per frame

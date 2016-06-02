@@ -46,7 +46,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
             yield return new WaitForSeconds(1);
         }
     }
-    void setAndCheckStats()
+    protected virtual void setAndCheckStats()
     {
         gameObject.transform.localScale = new Vector3(1 * sizeMod, 1 * sizeMod, 1 * sizeMod);
         if(health > maxHealth)
