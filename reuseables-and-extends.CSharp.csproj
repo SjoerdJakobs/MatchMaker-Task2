@@ -89,7 +89,9 @@
     <Compile Include="Assets\livingWithStats\livingEnitityStaticAttacks.cs" />
     <Compile Include="Assets\livingWithStats\skils\acidSplash.cs" />
     <Compile Include="Assets\livingWithStats\skils\chargeBash.cs" />
+    <Compile Include="Assets\livingWithStats\skils\dwarfsSpell.cs" />
     <Compile Include="Assets\livingWithStats\skils\forceBlast.cs" />
+    <Compile Include="Assets\livingWithStats\skils\giantsSpell.cs" />
     <Compile Include="Assets\livingWithStats\skils\magicMissile.cs" />
     <Compile Include="Assets\livingWithStats\skils\magicProjectile.cs" />
     <Compile Include="Assets\livingWithStats\skils\poisonShot.cs" />

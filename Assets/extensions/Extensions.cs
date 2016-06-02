@@ -102,7 +102,7 @@ public static class Extensions
             if(i.rigidbody != null)
             {
                 Vector3 direct = (i.transform.position - G.transform.position);
-                i.rigidbody.knockback(direct, force, absolute);
+                i.rigidbody.knockback(direct.normalized, force, absolute);
             }
             //Debug.Log(i);
         }

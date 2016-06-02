@@ -128,9 +128,14 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     public void DebufAndBuf(float time, float ammount, int stat)
     {
-        
+        StartCoroutine(bufsNshit(time , ammount, stat));
     }
-
+    IEnumerator bufsNshit(float time, float ammount, int stat)
+    {
+        changeStat(ammount, stat);
+        yield return new WaitForSeconds(time);
+        changeStat(-ammount, stat);
+    }
     public void changeStat(float ammount, int stat)
     {
         switch (stat)
@@ -149,14 +154,12 @@ public class LivingEntity : MonoBehaviour, IDamageable
                 break;
             case 4:
                 maxHealth += ammount;
-                health += ammount;
                 break;
             case 5:
                 healthRegen += ammount;
                 break;
             case 6:
                 maxMana += ammount;
-                mana += ammount;
                 break;
             case 7:
                 manaRegen += ammount;
@@ -174,7 +177,13 @@ public class LivingEntity : MonoBehaviour, IDamageable
                 sizeMod += ammount;
                 break;
             case 12:
-                attackDamage += ammount;
+                tenacity += ammount;
+                break;
+            case 13:
+                health += ammount;
+                break;
+            case 14:
+                mana += ammount;
                 break;
             default:
                 print("ERROR wrong or no stat number given");

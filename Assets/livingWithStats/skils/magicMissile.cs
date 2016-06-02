@@ -1,15 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class magicMissile : MonoBehaviour {
+public class magicMissile : MonoBehaviour, ISkill
+{
+    [SerializeField]
+    private GameObject magicCube;
+    [SerializeField]
+    private float cooldown = 2f;
+    private bool hasShot;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void shoot(float magicPen, float cooldownReduction)
+    {
+        StartCoroutine(useCooldown(magicPen, cooldownReduction));
+    }
+    IEnumerator useCooldown(float magicPen, float cooldownReduction)
+    {
+        if (!hasShot)
+        {
+            IDamageable damageable = gameObject.hitByMouse().collider.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                hasShot = true;
+                yield return new WaitForSeconds(cooldown - (cooldown / 100 * cooldownReduction));
+                hasShot = false;
+            }
+        }
+    }
 }
