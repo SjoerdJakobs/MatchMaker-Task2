@@ -2,5 +2,5 @@
 
 public interface ISkill
 {
-    void shoot();
+    void shoot(float pen);
 }

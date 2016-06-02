@@ -4,12 +4,12 @@ using System.Collections;
 public class testCharacter : LivingEntity {
 
     public GameObject magicCube;
-    public float testPen;
-    public bool testMagic;
+
+    private magicProjectile magicProj;
     // Use this for initialization
     protected override void Start () {
         base.Start();
-        TakeDamgOverTime(10, 10, testPen, 25,testMagic);
+        TakeDamgOverTime(10, 10, magicPen, 25,false);
 
     }
 
