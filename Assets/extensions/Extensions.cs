@@ -47,9 +47,9 @@ public static class Extensions
     {
         anim[anim.clip.name].speed = newSpeed;
     }
-    public static bool isDistanceBiggerThan(this Transform t, Vector3 otherPos, float range)
+    public static bool isDistanceSmallerThan(this Transform t, Vector3 otherPos, float range)
     {
-        return ((t.position - otherPos).sqrMagnitude > Mathf.Pow(range, 2));
+        return ((t.position - otherPos).sqrMagnitude < Mathf.Pow(range, 2));
     }
     public static float distanceInPow(this Transform t, Vector3 otherPos)
     {

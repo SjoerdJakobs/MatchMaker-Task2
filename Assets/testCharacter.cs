@@ -3,23 +3,28 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class testCharacter : LivingEntity {
-
-    public GameObject magicCube;
-
+    
     [SerializeField]
     private Text stats;
     [SerializeField]
     private Text stats2;
+    private bool walking;
     private magicMissile magicMiss;
     private magicProjectile magicProj;
     private giantsSpell giant;
+    private Rigidbody rigid;          
+    private Vector3 destinationPosition;        
+    private float destinationDistance;          
+    private float moveSpeed;
     // Use this for initialization
     protected override void Start () {
         base.Start();
+        rigid = GetComponent<Rigidbody>();
         TakeDamgOverTime(10, 10, magicPen, 25,false);
         magicProj = GetComponent<magicProjectile>();
         magicMiss = GetComponent<magicMissile>();
         giant = GetComponent<giantsSpell>();
+        destinationPosition = transform.position;
     }
 
     protected override void setAndCheckStats()
@@ -42,9 +47,57 @@ public class testCharacter : LivingEntity {
     // Update is called once per frame
     void Update()
     {
-        transform.lookAtMouse(10);
+        movement();
         checkInput();
     }
+
+    void movement()
+    {
+        destinationDistance = Vector3.Distance(destinationPosition, transform.position);
+
+        if (destinationDistance < .5f)
+        {
+            moveSpeed = 0;
+        }
+        else if (destinationDistance > .5f)
+        {
+            moveSpeed = moveMentspeed/10;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Plane playerPlane = new Plane(Vector3.up, transform.position);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            float hitdist = 0.0f;
+
+            if (playerPlane.Raycast(ray, out hitdist))
+            {
+                Vector3 targetPoint = ray.GetPoint(hitdist);
+                destinationPosition = ray.GetPoint(hitdist);
+                Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
+                transform.rotation = targetRotation;
+            }
+        }
+        else if (Input.GetMouseButton(0))
+        {
+
+            Plane playerPlane = new Plane(Vector3.up, transform.position);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            float hitdist = 0.0f;
+
+            if (playerPlane.Raycast(ray, out hitdist))
+            {
+                Vector3 targetPoint = ray.GetPoint(hitdist);
+                destinationPosition = ray.GetPoint(hitdist);
+                Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
+                transform.rotation = targetRotation;
+            }
+        }
+        if (destinationDistance > .5f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, destinationPosition, moveSpeed * Time.deltaTime);
+        }
+    }
+
     void checkInput()
     {
         if (Input.GetKeyDown(KeyCode.Q))

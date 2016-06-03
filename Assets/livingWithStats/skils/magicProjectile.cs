@@ -18,6 +18,7 @@ public class magicProjectile : MonoBehaviour, ISkill {
         if (!hasShot)
         {
             hasShot = true;
+            transform.lookAtMouse(999);
             Vector3 target = transform.mousePos();
             gameObject.skillShotProjectile(magicCube, target, 30, magicPen, false, 50, 10, 40);
             Instantiate(magicCube, transform.position, Quaternion.identity);

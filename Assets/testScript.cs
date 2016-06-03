@@ -17,16 +17,7 @@ public class testScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        
-        rigid = gameObject.GetComponent<Rigidbody>();
-	    if(transform.isDistanceBiggerThan(otherTrans.position, range))
-        {
-            print("out of range");
-        }
-        else
-        {
-            print("in range");
-        }
+
 	}
 	
 	// Update is called once per frame
