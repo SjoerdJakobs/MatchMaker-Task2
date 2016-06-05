@@ -43,7 +43,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
             health += healthRegen;
             mana += manaRegen;
             setAndCheckStats();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
         }
     }
     protected virtual void setAndCheckStats()
@@ -120,6 +120,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         {
             time--;
             health -= damagePerTick;
+            setAndCheckStats();
             //print("woop woop");
             checkDeath();
             yield return new WaitForSeconds(1);
@@ -196,7 +197,10 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         if (health <= 0 && !dead)
         {
-            Invoke("death", 0);
+            StopAllCoroutines();
+            health = 0;
+            setAndCheckStats();
+            Invoke("death", 1);
         }
     }
 
