@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.4f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -69,32 +71,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\camScript.cs" />
+    <Compile Include="Assets\Scripts\extensions\Extensions.cs" />
     <Compile Include="Assets\Scripts\interfaces\IWeapon.cs" />
     <Compile Include="Assets\Scripts\interfaces\Weapons\HandGun.cs" />
     <Compile Include="Assets\Scripts\interfaces\Weapons\NuclearMissileLauncher.cs" />
     <Compile Include="Assets\Scripts\interfaces\Weapons\ShotGun.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\ISkill.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\LivingEntity.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\livingEnitityStaticAttacks.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\skils\acidSplash.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\skils\chargeBash.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\skils\dwarfsSpell.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\skils\forceBlast.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\skils\giantsSpell.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\skils\magicMissile.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\skils\magicProjectile.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\skils\poisonShot.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\skils\stunCage.cs" />
+    <Compile Include="Assets\Scripts\reuseableScripts\CamScript.cs" />
+    <Compile Include="Assets\Scripts\reuseableScripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\reuseableScripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\reuseableScripts\TransformClickMove.cs" />
+    <Compile Include="Assets\Scripts\reuseableScripts\rotateObject.cs" />
     <Compile Include="Assets\bugged\graplingHookClean.cs" />
     <Compile Include="Assets\explosion.cs" />
-    <Compile Include="Assets\extensions\Extensions.cs" />
-    <Compile Include="Assets\livingWithStats\IDamageable.cs" />
-    <Compile Include="Assets\livingWithStats\ISkill.cs" />
-    <Compile Include="Assets\livingWithStats\LivingEntity.cs" />
-    <Compile Include="Assets\livingWithStats\livingEnitityStaticAttacks.cs" />
-    <Compile Include="Assets\livingWithStats\skils\acidSplash.cs" />
-    <Compile Include="Assets\livingWithStats\skils\chargeBash.cs" />
-    <Compile Include="Assets\livingWithStats\skils\dwarfsSpell.cs" />
-    <Compile Include="Assets\livingWithStats\skils\forceBlast.cs" />
-    <Compile Include="Assets\livingWithStats\skils\giantsSpell.cs" />
-    <Compile Include="Assets\livingWithStats\skils\magicMissile.cs" />
-    <Compile Include="Assets\livingWithStats\skils\magicProjectile.cs" />
-    <Compile Include="Assets\livingWithStats\skils\poisonShot.cs" />
-    <Compile Include="Assets\livingWithStats\skils\stunCage.cs" />
-    <Compile Include="Assets\reuseableScripts\CamScript.cs" />
-    <Compile Include="Assets\reuseableScripts\PlayerMovement.cs" />
-    <Compile Include="Assets\reuseableScripts\Projectile.cs" />
-    <Compile Include="Assets\reuseableScripts\TransformClickMove.cs" />
-    <Compile Include="Assets\reuseableScripts\rotateObject.cs" />
     <Compile Include="Assets\testCharacter.cs" />
     <Compile Include="Assets\testEnemy.cs" />
     <Compile Include="Assets\testScript.cs" />

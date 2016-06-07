@@ -57,6 +57,11 @@ public class LivingEntity : MonoBehaviour, IDamageable
         {
             mana = maxMana;
         }
+        if (xp >= (50 * Mathf.Pow(Level, 3) / 3) - (100 * Mathf.Pow(Level, 2)) + 850 * Level / 3 - 150)
+        {
+            Level++;
+        }
+        //print("level xp = level " + Level + " xp = " + ((50 * Mathf.Pow(Level, 3) / 3) - (100 * Mathf.Pow(Level, 2)) + 850 * Level / 3 - 200));
     }
     public void returnCaster(GameObject caster)
     {
@@ -65,6 +70,10 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public void addXp(float addedXp)
     {
         xp += addedXp;
+        if (xp >= (50 * Mathf.Pow(Level, 3) / 3) - (100 * Mathf.Pow(Level, 2)) + 850 * Level / 3 - 200)
+        {
+            Level++;
+        }
     }
     void giveXp()
     {

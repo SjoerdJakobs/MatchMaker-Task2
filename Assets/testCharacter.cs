@@ -62,7 +62,7 @@ public class testCharacter : LivingEntity {
             "\n" + "attackSpeed" + attackspeed.ToString();
         healthText.text = "health " + health.ToString() + "/" + maxHealth.ToString();
         manaText.text = "mana " + mana.ToString() + "/" + maxMana.ToString();
-        xpText.text = "xp " + xp.ToString(); 
+        xpText.text = "LVL " + Level.ToString() +"         xp " + xp.ToString(); 
 
     }
 
@@ -104,7 +104,7 @@ public class testCharacter : LivingEntity {
             if (Physics.Raycast(ray, out hit, mask))
             {
                 destinationPosition = transform.mousePos();
-                print(destinationPosition);
+                //print(destinationPosition);
             }
             //destinationPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
