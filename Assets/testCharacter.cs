@@ -20,7 +20,6 @@ public class testCharacter : LivingEntity {
     private Transform manaBar;
     [SerializeField]
     private Transform hpBar;
-    private bool walking;
     private magicMissile magicMiss;
     private magicProjectile magicProj;
     private giantsSpell giant;
@@ -29,9 +28,15 @@ public class testCharacter : LivingEntity {
     private float destinationDistance;          
     private float moveSpeed;
     private float velocity;
+    private bool isMoving = false;
+
+    [SerializeField]
+    private LayerMask mask;
+
     // Use this for initialization
     protected override void Start () {
         base.Start();
+
         rigid = GetComponent<Rigidbody>();
         magicProj = GetComponent<magicProjectile>();
         magicMiss = GetComponent<magicMissile>();
@@ -64,56 +69,49 @@ public class testCharacter : LivingEntity {
     // Update is called once per frame
     void Update()
     {
-        movement();
         checkInput();
         changeBars();
     }
-
-    void movement()
+    void FixedUpdate()
     {
         destinationDistance = Vector3.Distance(destinationPosition, transform.position);
-
-        if (destinationDistance < .5f)
+        if (destinationDistance < 0.5f/* && isMoving == true*/)
         {
             moveSpeed = 0;
+            rigid.velocity =    new Vector3(0,0,0);
         }
-        else if (destinationDistance > .5f)
+        else if (destinationDistance > 0.5f)
         {
-            moveSpeed = moveMentspeed/10;
+            moveSpeed = moveMentspeed / 10;
         }
         if (Input.GetMouseButtonDown(0))
         {
-            Plane playerPlane = new Plane(Vector3.up, transform.position);
+            rigid.velocity = new Vector3(0, 0, 0);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            float hitdist = 0.0f;
-
-            if (playerPlane.Raycast(ray, out hitdist))
+            RaycastHit hit;
+            transform.lookAtMouse(999);
+            if (Physics.Raycast(ray, out hit, mask))
             {
-                Vector3 targetPoint = ray.GetPoint(hitdist);
-                destinationPosition = ray.GetPoint(hitdist);
-                Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
-                transform.rotation = targetRotation;
+                destinationPosition = transform.mousePos();
             }
+            //destinationPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
         else if (Input.GetMouseButton(0))
         {
-
-            Plane playerPlane = new Plane(Vector3.up, transform.position);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            float hitdist = 0.0f;
-
-            if (playerPlane.Raycast(ray, out hitdist))
+            RaycastHit hit;
+            transform.lookAtMouse(999);
+            if (Physics.Raycast(ray, out hit, mask))
             {
-                Vector3 targetPoint = ray.GetPoint(hitdist);
-                destinationPosition = ray.GetPoint(hitdist);
-                Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
-                transform.rotation = targetRotation;
+                destinationPosition = transform.mousePos();
+                print(destinationPosition);
             }
+            //destinationPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-        if (destinationDistance > .5f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, destinationPosition, moveSpeed * Time.deltaTime);
-        }
+
+        //transform.lookAtMouse(moveSpeed);
+        rigid.AddForce(((destinationPosition - transform.position).normalized*moveSpeed), ForceMode.Impulse);// = Vector3.Lerp(transform.position, destinationPosition, (moveMentspeed) * Time.fixedDeltaTime);
+        rigid.limitVelocityHard3D(moveMentspeed/10);
     }
 
     void checkInput()

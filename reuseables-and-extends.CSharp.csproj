@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -99,6 +93,7 @@
     <Compile Include="Assets\reuseableScripts\CamScript.cs" />
     <Compile Include="Assets\reuseableScripts\PlayerMovement.cs" />
     <Compile Include="Assets\reuseableScripts\Projectile.cs" />
+    <Compile Include="Assets\reuseableScripts\TransformClickMove.cs" />
     <Compile Include="Assets\reuseableScripts\rotateObject.cs" />
     <Compile Include="Assets\testCharacter.cs" />
     <Compile Include="Assets\testEnemy.cs" />
