@@ -57,7 +57,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         {
             mana = maxMana;
         }
-        if (xp >= (50 * Mathf.Pow(Level, 3) / 3) - (100 * Mathf.Pow(Level, 2)) + 850 * Level / 3 - 150)
+        if (xp >= (50 * Mathf.Pow(Level, 3) / 3) - (100 * Mathf.Pow(Level, 2)) + 850 * Level / 3 - 100)
         {
             Level++;
         }
