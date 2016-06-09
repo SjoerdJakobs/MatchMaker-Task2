@@ -118,44 +118,38 @@ public class testCharacter : LivingEntity {
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            magicProj.shoot(magicPen, cooldownReduction);
-            mana -= 110;
+            magicProj.shoot(magicPen, cooldownReduction, mana);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            magicMiss.shoot(magicPen, cooldownReduction);
+            magicMiss.shoot(magicPen, cooldownReduction, mana);
             mana -= 110;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            giant.shoot(magicPen, cooldownReduction);
+            giant.shoot(magicPen, cooldownReduction, mana);
             mana -= 180;
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            magicProj.shoot(magicPen, cooldownReduction);
-            mana -= 110;
+            magicProj.shoot(magicPen, cooldownReduction, mana);
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            magicProj.shoot(magicPen, cooldownReduction);
-            mana -= 110;
+            magicProj.shoot(magicPen, cooldownReduction, mana);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            magicProj.shoot(magicPen, cooldownReduction);
-            mana -= 110;
+            magicProj.shoot(magicPen, cooldownReduction, mana);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            magicProj.shoot(magicPen, cooldownReduction);
-            mana -= 110;
+            magicProj.shoot(magicPen, cooldownReduction, mana);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             TakeDamgOverTime(10, 10, magicPen, 25,false);
-            magicProj.shoot(magicPen, cooldownReduction);
-            mana -= 110;
+            magicProj.shoot(magicPen, cooldownReduction, mana);
         }
     }
     void changeBars ()

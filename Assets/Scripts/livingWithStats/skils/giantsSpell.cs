@@ -6,7 +6,7 @@ public class giantsSpell : MonoBehaviour, ISkill {
     private float cooldown = 2f;
     private bool hasShot;
 
-    public void shoot(float magicPen, float cooldownReduction)
+    public void shoot(float magicPen, float cooldownReduction, float mana)
     {
         StartCoroutine(useCooldown(cooldownReduction));
     }
