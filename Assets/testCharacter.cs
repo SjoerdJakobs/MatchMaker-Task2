@@ -20,14 +20,18 @@ public class testCharacter : LivingEntity {
     private Transform manaBar;
     [SerializeField]
     private Transform hpBar;
+    [SerializeField]
+    protected GameObject lvlScreen;
     private magicMissile magicMiss;
     private magicProjectile magicProj;
     private giantsSpell giant;
     private Rigidbody rigid;          
-    private Vector3 destinationPosition;        
+    private Vector3 destinationPosition;
+
     private float destinationDistance;          
     private float moveSpeed;
     private float velocity;
+
     private bool isMoving = false;
 
     [SerializeField]
@@ -48,6 +52,10 @@ public class testCharacter : LivingEntity {
     protected override void setAndCheckStats()
     {
         base.setAndCheckStats();
+        if(isLVLing)
+        {
+
+        }
         stats.text = "AttackDamage: " + attackDamage.ToString() +
             "\n" + "Armor: " + armor.ToString() +
             "\n" + "MagicRes: " + magicResist.ToString() +

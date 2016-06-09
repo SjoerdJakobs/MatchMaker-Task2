@@ -23,6 +23,11 @@ public class LivingEntity : MonoBehaviour, IDamageable
     [SerializeField] protected float magicDamage = 0;//modefier for magic attack
     [SerializeField] protected float attackspeed = 1.2f;
     [SerializeField] protected float cooldownReduction = 0;
+    [SerializeField] protected int powerPointsPerLVL = 10;
+
+
+    protected bool isLVLing = false;
+    protected int powerPoints;
     protected IDamageable enemyCaster;
     protected bool dead;//to be or not to be :)
 
@@ -60,6 +65,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         if (xp >= (50 * Mathf.Pow(Level, 3) / 3) - (100 * Mathf.Pow(Level, 2)) + 850 * Level / 3 - 100)
         {
             Level++;
+            isLVLing = true;
         }
         //print("level xp = level " + Level + " xp = " + ((50 * Mathf.Pow(Level, 3) / 3) - (100 * Mathf.Pow(Level, 2)) + 850 * Level / 3 - 200));
     }

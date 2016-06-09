@@ -4,17 +4,21 @@ using System.Collections;
 public class giantsSpell : MonoBehaviour, ISkill {
     [SerializeField]
     private float cooldown = 2f;
+    [SerializeField]
+    private float manaCost = 200f;
     private bool hasShot;
 
     public void shoot(float magicPen, float cooldownReduction, float mana)
     {
-        StartCoroutine(useCooldown(cooldownReduction));
+        StartCoroutine(useCooldown(cooldownReduction, mana));
     }
-    IEnumerator useCooldown(float cooldownReduction)
+    IEnumerator useCooldown(float cooldownReduction, float mana)
     {
-        if (!hasShot)
+        if (!hasShot && mana >= manaCost)
         {
             hasShot = true;
+            IDamageable casterMana = GetComponent<IDamageable>();
+            casterMana.changeStat(-manaCost, 14);
             GetComponent<IDamageable>().DebufAndBuf(10, 30, 0);
             GetComponent<IDamageable>().DebufAndBuf(10, 30, 2);
             GetComponent<IDamageable>().DebufAndBuf(10, 600, 4);
