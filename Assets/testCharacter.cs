@@ -41,21 +41,20 @@ public class testCharacter : LivingEntity {
     protected override void Start () {
         base.Start();
 
+        lvlScreen.SetActive(false);
         rigid = GetComponent<Rigidbody>();
         magicProj = GetComponent<magicProjectile>();
         magicMiss = GetComponent<magicMissile>();
         giant = GetComponent<giantsSpell>();
         destinationPosition = transform.position;
+        Time.timeScale = 1;
+        isLVLing = false;
         velocity = 1000;
     }
 
     protected override void setAndCheckStats()
     {
         base.setAndCheckStats();
-        if(isLVLing)
-        {
-
-        }
         stats.text = "AttackDamage: " + attackDamage.ToString() +
             "\n" + "Armor: " + armor.ToString() +
             "\n" + "MagicRes: " + magicResist.ToString() +
@@ -70,8 +69,13 @@ public class testCharacter : LivingEntity {
             "\n" + "attackSpeed" + attackspeed.ToString();
         healthText.text = "health " + health.ToString() + "/" + maxHealth.ToString();
         manaText.text = "mana " + mana.ToString() + "/" + maxMana.ToString();
-        xpText.text = "LVL " + Level.ToString() +"         xp " + xp.ToString(); 
-
+        xpText.text = "LVL " + Level.ToString() +"         xp " + xp.ToString();
+        print(isLVLing);
+        if (isLVLing)
+        {
+            lvlScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 
     // Update is called once per frame
@@ -131,12 +135,10 @@ public class testCharacter : LivingEntity {
         if (Input.GetKeyDown(KeyCode.W))
         {
             magicMiss.shoot(magicPen, cooldownReduction, mana);
-            mana -= 110;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             giant.shoot(magicPen, cooldownReduction, mana);
-            mana -= 180;
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -153,6 +155,7 @@ public class testCharacter : LivingEntity {
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             magicProj.shoot(magicPen, cooldownReduction, mana);
+            TakeDamg(200, armorPen, 80, true);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {

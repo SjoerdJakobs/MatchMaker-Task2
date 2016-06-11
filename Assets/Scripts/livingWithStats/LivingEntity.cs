@@ -24,9 +24,11 @@ public class LivingEntity : MonoBehaviour, IDamageable
     [SerializeField] protected float attackspeed = 1.2f;
     [SerializeField] protected float cooldownReduction = 0;
     [SerializeField] protected int powerPointsPerLVL = 10;
+    [SerializeField]
+    protected bool canLVL = false;
 
 
-    protected bool isLVLing = false;
+    protected bool isLVLing;
     protected int powerPoints;
     protected IDamageable enemyCaster;
     protected bool dead;//to be or not to be :)
@@ -35,6 +37,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     protected virtual void Start()
     {
+        isLVLing = false;
         health = maxHealth;//sets health 
         mana = maxMana;
         StartCoroutine(regenTimer());
@@ -62,10 +65,11 @@ public class LivingEntity : MonoBehaviour, IDamageable
         {
             mana = maxMana;
         }
-        if (xp >= (50 * Mathf.Pow(Level, 3) / 3) - (100 * Mathf.Pow(Level, 2)) + 850 * Level / 3 - 100)
+        if (xp >= (50 * Mathf.Pow(Level, 3) / 3) - (100 * Mathf.Pow(Level, 2)) + 850 * Level / 3 - 100 && canLVL)
         {
             Level++;
             isLVLing = true;
+            powerPoints += powerPointsPerLVL;
         }
         //print("level xp = level " + Level + " xp = " + ((50 * Mathf.Pow(Level, 3) / 3) - (100 * Mathf.Pow(Level, 2)) + 850 * Level / 3 - 200));
     }
@@ -76,10 +80,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public void addXp(float addedXp)
     {
         xp += addedXp;
-        if (xp >= (50 * Mathf.Pow(Level, 3) / 3) - (100 * Mathf.Pow(Level, 2)) + 850 * Level / 3 - 200)
-        {
-            Level++;
-        }
+        setAndCheckStats();
     }
     void giveXp()
     {

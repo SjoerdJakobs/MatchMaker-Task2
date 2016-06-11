@@ -11,7 +11,7 @@ public class camScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        print(followObject.position);
+        //print(followObject.position);
         transform.position = new Vector3(followObject.position.x, transform.position.y, transform.position.z);
 	}
 }
