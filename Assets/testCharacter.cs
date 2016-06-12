@@ -48,7 +48,7 @@ public class testCharacter : LivingEntity {
         giant = GetComponent<giantsSpell>();
         destinationPosition = transform.position;
         Time.timeScale = 1;
-        isLVLing = false;
+        isLVLing = true;
         velocity = 1000;
     }
 
@@ -75,6 +75,52 @@ public class testCharacter : LivingEntity {
         {
             lvlScreen.SetActive(true);
             Time.timeScale = 0;
+        }
+        else
+        {
+            lvlScreen.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+
+    public void SpendPoints(int stat)
+    {
+        if(stat == 0 || stat == 2) //armor or magicresist
+        {
+            changeStat(10, stat);
+            powerPoints--;
+        }
+        else if (stat == 1 || stat == 3) //armor or magicpen
+        {
+            changeStat(5, stat);
+            powerPoints--;
+        }
+        else if (stat == 4)//hp
+        {
+            changeStat(50, stat);
+            changeStat(75, 13);
+            powerPoints--;
+        }
+        else if (stat == 6)//mana
+        {
+            changeStat(75, stat);
+            changeStat(75, 14);
+            powerPoints--;
+        }
+        else if (stat == 5 || stat == 7)//health or mana regen
+        {
+            changeStat(5, stat);
+            powerPoints--;
+        }
+        else if (stat == 9 || stat == 10)//magic or attack damage
+        {
+            changeStat(15, stat);
+            powerPoints--;
+        }
+        else if (stat == 8 || stat == 15)//movementspeed or cooldownReduction
+        {
+            changeStat(10, stat);
+            powerPoints--;
         }
     }
 
@@ -130,37 +176,37 @@ public class testCharacter : LivingEntity {
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            magicProj.shoot(magicPen, cooldownReduction, mana);
+            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            magicMiss.shoot(magicPen, cooldownReduction, mana);
+            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            giant.shoot(magicPen, cooldownReduction, mana);
+            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            magicProj.shoot(magicPen, cooldownReduction, mana);
+            giant.shoot(magicPen, cooldownReduction, mana);
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            magicProj.shoot(magicPen, cooldownReduction, mana);
+            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            magicProj.shoot(magicPen, cooldownReduction, mana);
+            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            magicProj.shoot(magicPen, cooldownReduction, mana);
-            TakeDamg(200, armorPen, 80, true);
+            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
+            TakeDamg(200, armorPen, 80, true, attackDamage);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            TakeDamgOverTime(10, 10, magicPen, 25,false);
-            magicProj.shoot(magicPen, cooldownReduction, mana);
+            TakeDamgOverTime(10, 10, magicPen, 25,false,magicDamage);
+            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
         }
     }
     void changeBars ()

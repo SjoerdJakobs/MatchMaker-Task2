@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour {
     public float _pen;
     public float _projectileSpeed;//the _speed of the projectile >_>
     public float _damage;//the ammount of damg this thing does
-
+    public float _AdOrAp;
 
     void Start()
     {
@@ -54,7 +54,7 @@ public class Projectile : MonoBehaviour {
         if(damageableObject != null)//"if object has idamagable"
         {
             damageableObject.returnCaster(_caster);
-            damageableObject.TakeDamg(_damage, _pen, _scaling, _physical);//_damage it
+            damageableObject.TakeDamg(_damage, _pen, _scaling, _physical, _AdOrAp);//_damage it
         }
         //Debug.Log(hit.collider.gameObject.name);
         GameObject.Destroy(gameObject);//destroy this object(the projectile)

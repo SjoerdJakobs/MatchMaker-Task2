@@ -6,11 +6,11 @@ public interface IDamageable// a interface, every script that implements this in
 
     void addXp(float xp);
 
-    void TakeTrueDamg(float damage, float scaling, bool physical);
+    void TakeTrueDamg(float damage, float scaling, bool physical, float apOrAd);
 
-    void TakeDamg(float damage, float pen, float scaling, bool physical);
+    void TakeDamg(float damage, float pen, float scaling, bool physical, float apOrAd);
 
-    void TakeDamgOverTime(float time, float damagePerTick, float pen, float scaling, bool physical);
+    void TakeDamgOverTime(float time, float damagePerTick, float pen, float scaling, bool physical, float apOrAd);
 
     void DebufAndBuf(float time, float ammount, int stat);
 

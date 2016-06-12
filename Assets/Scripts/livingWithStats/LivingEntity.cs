@@ -28,7 +28,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     protected bool canLVL = false;
 
 
-    protected bool isLVLing;
+    protected bool isLVLing = false;
     protected int powerPoints;
     protected IDamageable enemyCaster;
     protected bool dead;//to be or not to be :)
@@ -37,7 +37,6 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     protected virtual void Start()
     {
-        isLVLing = false;
         health = maxHealth;//sets health 
         mana = maxMana;
         StartCoroutine(regenTimer());
@@ -86,51 +85,51 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         enemyCaster.addXp(xpOnDeath);
     }
-    public void TakeTrueDamg(float damage, float scaling, bool physical)
+    public void TakeTrueDamg(float damage, float scaling, bool physical, float apOrAd)
     {
         if(physical)
         {
-            damage = damage + (attackDamage * (scaling / 100));
+            damage = damage + (apOrAd * (scaling / 100));
         }
         else
         {
-            damage = damage + (magicDamage * (scaling / 100));
+            damage = damage + (apOrAd * (scaling / 100));
         }
         health -= damage;
         checkDeath();
     }
-    public void TakeDamg(float damage, float pen, float scaling, bool physical)
+    public void TakeDamg(float damage, float pen, float scaling, bool physical, float apOrAd)
     {
         if (physical)
         {
             float armorPenetrated = armor * (1 - (pen / 100));
-            damage = (damage + (attackDamage * (scaling / 100))) * (1-(armorPenetrated / (armorPenetrated + 100)));
+            damage = (damage + (apOrAd * (scaling / 100))) * (1-(armorPenetrated / (armorPenetrated + 100)));
         }
         else
         {
             float magicPenetrated = magicResist * (1 - (pen / 100));
-            damage = (damage + (magicDamage * (scaling / 100))) * (1 - (magicPenetrated / (magicPenetrated + 100)));
+            damage = (damage + (apOrAd * (scaling / 100))) * (1 - (magicPenetrated / (magicPenetrated + 100)));
         }
         health -= damage;
         checkDeath();
     }
 
-    public void TakeDamgOverTime(float time, float damagePerTick, float pen, float scaling, bool physical)
+    public void TakeDamgOverTime(float time, float damagePerTick, float pen, float scaling, bool physical, float apOrAd)
     {
-        StartCoroutine(TakeDamgOverTimeCoroutine( time, damagePerTick, pen, scaling, physical));
+        StartCoroutine(TakeDamgOverTimeCoroutine( time, damagePerTick, pen, scaling, physical, apOrAd));
     }
 
-    IEnumerator TakeDamgOverTimeCoroutine(float time, float damagePerTick, float pen, float scaling, bool physical)
+    IEnumerator TakeDamgOverTimeCoroutine(float time, float damagePerTick, float pen, float scaling, bool physical, float apOrAd)
     {
         if (physical)
         {
             float armorPenetrated = armor * (1 - (pen / 100));
-            damagePerTick = (damagePerTick + (attackDamage * (scaling / 100))) * (1-(armorPenetrated / (armorPenetrated + 100)));
+            damagePerTick = (damagePerTick + (apOrAd * (scaling / 100))) * (1-(armorPenetrated / (armorPenetrated + 100)));
         }
         else
         {
             float magicPenetrated = magicResist * (1 - (pen / 100));
-            damagePerTick = (damagePerTick + (magicDamage * (scaling / 100))) * (1 - (magicPenetrated/ (magicPenetrated + 100)));
+            damagePerTick = (damagePerTick + (apOrAd * (scaling / 100))) * (1 - (magicPenetrated/ (magicPenetrated + 100)));
         }
         while (time > 0)
         {
@@ -202,9 +201,16 @@ public class LivingEntity : MonoBehaviour, IDamageable
             case 14:
                 mana += ammount;
                 break;
+            case 15:
+                cooldownReduction += ammount;
+                break;
             default:
                 print("ERROR wrong or no stat number given");
                 break;
+        }
+        if(powerPoints <= 1)
+        {
+            isLVLing = false;
         }
         setAndCheckStats();
     }
@@ -216,7 +222,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
             StopAllCoroutines();
             health = 0;
             setAndCheckStats();
-            Invoke("death", 1);
+            Invoke("death", 0);
         }
     }
 
