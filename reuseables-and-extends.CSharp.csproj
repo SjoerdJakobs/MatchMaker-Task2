@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\livingWithStats\LivingEntity.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\livingEnitityStaticAttacks.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\skils\acidSplash.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\skils\astroid.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\skils\chargeBash.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\skils\dwarfsSpell.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\skils\forceBlast.cs" />
@@ -98,6 +99,8 @@
     <Compile Include="Assets\Scripts\livingWithStats\skils\poisonShot.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\skils\stunCage.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\CamScript.cs" />
+    <Compile Include="Assets\Scripts\reuseableScripts\FallingProjectile.cs" />
+    <Compile Include="Assets\Scripts\reuseableScripts\FollowingProjectile.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\TransformClickMove.cs" />

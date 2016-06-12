@@ -22,10 +22,12 @@ public class testCharacter : LivingEntity {
     private Transform hpBar;
     [SerializeField]
     protected GameObject lvlScreen;
+    private chargeBash charge;
     private magicMissile magicMiss;
     private magicProjectile magicProj;
     private giantsSpell giant;
-    private Rigidbody rigid;          
+    private Rigidbody rigid;
+    private astroid astr;
     private Vector3 destinationPosition;
 
     private float destinationDistance;          
@@ -45,7 +47,9 @@ public class testCharacter : LivingEntity {
         rigid = GetComponent<Rigidbody>();
         magicProj = GetComponent<magicProjectile>();
         magicMiss = GetComponent<magicMissile>();
+        astr = GetComponent<astroid>();
         giant = GetComponent<giantsSpell>();
+        charge = GetComponent<chargeBash>();
         destinationPosition = transform.position;
         Time.timeScale = 1;
         isLVLing = true;
@@ -70,7 +74,7 @@ public class testCharacter : LivingEntity {
         healthText.text = "health " + health.ToString() + "/" + maxHealth.ToString();
         manaText.text = "mana " + mana.ToString() + "/" + maxMana.ToString();
         xpText.text = "LVL " + Level.ToString() +"         xp " + xp.ToString();
-        print(isLVLing);
+        //print(isLVLing);
         if (isLVLing)
         {
             lvlScreen.SetActive(true);
@@ -180,11 +184,11 @@ public class testCharacter : LivingEntity {
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
+            charge.shoot(magicPen, cooldownReduction, mana);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
+            astr.shoot(magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
