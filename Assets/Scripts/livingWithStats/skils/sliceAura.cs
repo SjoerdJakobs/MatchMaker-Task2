@@ -7,8 +7,6 @@ public class sliceAura : MonoBehaviour, ISkill
     [SerializeField]
     private GameObject sliceArea;
     [SerializeField]
-    private float cooldown = 2f;
-    [SerializeField]
     private float manaCost = 100;
     [SerializeField]
     private float scaling = 50;
@@ -20,15 +18,15 @@ public class sliceAura : MonoBehaviour, ISkill
 
     // Update is called once per frame
 
-    public void shoot(float armorPen, float cooldownReduction, float mana, float apOrAd)
+    public void shoot(float armorPen, float attackSpeed, float mana, float apOrAd)
     {
-        StartCoroutine(useCooldown(armorPen, cooldownReduction, mana, apOrAd));
+        StartCoroutine(useCooldown(armorPen, attackSpeed, mana, apOrAd));
     }
 
     void Update () {
-        sliceArea.transform.position = transform.position;
+        sliceArea.transform.position = transform.position + new Vector3(0,transform.localScale.y/25, 0);
     }
-    IEnumerator useCooldown(float armorpen, float cooldownReduction, float mana, float apOrAd)
+    IEnumerator useCooldown(float armorpen, float attackSpeed, float mana, float apOrAd)
     {
         if (!hasShot)
         {
@@ -36,21 +34,28 @@ public class sliceAura : MonoBehaviour, ISkill
             IDamageable casterMana = GetComponent<IDamageable>();
             gameObject.explosion(1, 5, true, false);
             sliceArea.transform.localScale = new Vector3(2,0.1f,2);
-            foreach (RaycastHit i in transform.getWithinSphere(5))
+            foreach (RaycastHit i in transform.getWithinSphere(range))
             {
                 IDamageable damageableObject = i.collider.GetComponent<IDamageable>();//check for component idamagable on the hit object
                 if (damageableObject != null)//"if object has idamagable"
                 {
-                    print("ello?");
+                    bool shouldHit = true;
                     damageableObject.returnCaster(gameObject);
-                    damageableObject.TakeDamg(baseDamg, armorpen, scaling, true, apOrAd);//_damage it              
+                    if (gameObject == i.collider.gameObject)
+                    {
+                        shouldHit = false;
+                    }
+                    if (shouldHit)
+                    {
+                        damageableObject.TakeDamg(baseDamg, armorpen, scaling, true, apOrAd);//_damage it              
+                    }
                 }
             }
             //Debug.Log(hit.collider.gameObject.name);
             yield return new WaitForSeconds(0.1f);
 
             sliceArea.transform.localScale = new Vector3(0.5f,0.1f,0.5f);
-            yield return new WaitForSeconds(1 / cooldownReduction);
+            yield return new WaitForSeconds(1 / attackSpeed);
             hasShot = false;
         }
 

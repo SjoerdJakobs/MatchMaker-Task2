@@ -23,7 +23,7 @@ public class giantsSpell : MonoBehaviour, ISkill {
             GetComponent<IDamageable>().DebufAndBuf(10, 30, 2);
             GetComponent<IDamageable>().DebufAndBuf(10, 600, 4);
             GetComponent<IDamageable>().DebufAndBuf(10, 30, 8);
-            GetComponent<IDamageable>().DebufAndBuf(10, 2, 11);
+            GetComponent<IDamageable>().DebufAndBuf(10, 8, 11);
             GetComponent<IDamageable>().changeStat(600, 13);
             yield return new WaitForSeconds( Mathf.Clamp(cooldown - (cooldown / 100 * cooldownReduction),10,60));
             hasShot = false;

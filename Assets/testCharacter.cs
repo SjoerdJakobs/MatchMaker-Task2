@@ -37,6 +37,8 @@ public class testCharacter : LivingEntity {
 
     private bool isMoving = false;
 
+    private NavMeshAgent agent;
+
     [SerializeField]
     private LayerMask mask;
 
@@ -138,8 +140,8 @@ public class testCharacter : LivingEntity {
     }
     void FixedUpdate()
     {
-        destinationDistance = Vector3.Distance(destinationPosition, transform.position);
-        if (destinationDistance < 0.5f/* && isMoving == true*/)
+        /*destinationDistance = Vector3.Distance(destinationPosition, transform.position);
+        if (destinationDistance < 0.5f/* && isMoving == true)
         {
             moveSpeed = 0;
             rigid.velocity =    new Vector3(0,0,0);
@@ -176,13 +178,15 @@ public class testCharacter : LivingEntity {
         //transform.lookAtMouse(moveSpeed);
         rigid.AddForce(((destinationPosition - transform.position).normalized*moveSpeed), ForceMode.Impulse);// = Vector3.Lerp(transform.position, destinationPosition, (moveMentspeed) * Time.fixedDeltaTime);
         rigid.limitVelocityHard3D(moveMentspeed/10);
+    */
     }
+
 
     void checkInput()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            slice.shoot(armorPen,moveMentspeed,mana,attackDamage);
+            slice.shoot(armorPen,attackspeed,mana,attackDamage);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {

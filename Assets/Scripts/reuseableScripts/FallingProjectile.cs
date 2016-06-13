@@ -57,9 +57,17 @@ public class FallingProjectile : MonoBehaviour {
             IDamageable damageableObject = i.collider.GetComponent<IDamageable>();//check for component idamagable on the hit object
             if (damageableObject != null)//"if object has idamagable"
             {
-                print("ello?");
-                damageableObject.returnCaster(_caster); 
-                damageableObject.TakeDamg(_damage, _pen, _scaling, _physical, _AdOrAp);//_damage it
+                bool shouldHit = true;
+                damageableObject.returnCaster(_caster);
+                if (_caster.tag == i.collider.gameObject.tag)
+                {
+                    shouldHit = false;
+                    //print("ello?");
+                }
+                if (shouldHit)
+                {
+                    damageableObject.TakeDamg(_damage, _pen, _scaling, _physical, _AdOrAp);//_damage it
+                }
                 gameObject.explosion(_force, 5, true, false);
             }
         }

@@ -50,13 +50,24 @@ public class Projectile : MonoBehaviour {
 
     void OnHitObject(RaycastHit hit)//this wil take in information abbout the object hit
     {
+        bool shouldHit = true;
         IDamageable damageableObject = hit.collider.GetComponent<IDamageable>();//check for component idamagable on the hit object
-        if(damageableObject != null)//"if object has idamagable"
+        if (damageableObject != null)//"if object has idamagable"
         {
             damageableObject.returnCaster(_caster);
-            damageableObject.TakeDamg(_damage, _pen, _scaling, _physical, _AdOrAp);//_damage it
+            if (_caster.tag == hit.collider.gameObject.tag)
+            {
+                shouldHit = false;
+            }
+            if (shouldHit)
+            {
+                damageableObject.TakeDamg(_damage, _pen, _scaling, _physical, _AdOrAp);//_damage it
+            }
         }
-        //Debug.Log(hit.collider.gameObject.name);
-        GameObject.Destroy(gameObject);//destroy this object(the projectile)
+        if (shouldHit)
+        {
+            //Debug.Log(hit.collider.gameObject.name);
+            GameObject.Destroy(gameObject);//destroy this object(the projectile)
+        }
     }
 }

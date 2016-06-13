@@ -45,4 +45,26 @@ public static class livingEnitityStaticAttacks
         proj._speed = speed;
         proj._target = target;
     }
+    public static void selfExplodingObject(this GameObject T, float damage, float pen, bool physical, float scaling, float apOrAd, float force, float radius)
+    {
+        foreach (RaycastHit i in T.transform.getWithinSphere(radius))
+        {
+            IDamageable damageableObject = i.collider.GetComponent<IDamageable>();//check for component idamagable on the hit object
+            if (damageableObject != null)//"if object has idamagable"
+            {
+                bool shouldHit = true;
+                damageableObject.returnCaster(T);
+                if (T.tag == i.collider.gameObject.tag)
+                {
+                    shouldHit = false;
+                    //print("ello?");
+                }
+                if (shouldHit)
+                {
+                    damageableObject.TakeDamg(damage, pen, scaling, physical, apOrAd);//_damage it
+                }
+            }
+        }
+        T.explosion(force, radius, true, true);
+    }
 }
