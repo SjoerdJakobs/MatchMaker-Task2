@@ -24,8 +24,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     [SerializeField] protected float attackspeed = 1.2f;
     [SerializeField] protected float cooldownReduction = 0;
     [SerializeField] protected int powerPointsPerLVL = 10;
-    [SerializeField]
-    protected bool canLVL = false;
+    [SerializeField] protected bool canLVL = false;
 
 
     protected bool isLVLing = false;

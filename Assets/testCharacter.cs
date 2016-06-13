@@ -28,6 +28,7 @@ public class testCharacter : LivingEntity {
     private giantsSpell giant;
     private Rigidbody rigid;
     private astroid astr;
+    private sliceAura slice;
     private Vector3 destinationPosition;
 
     private float destinationDistance;          
@@ -46,6 +47,7 @@ public class testCharacter : LivingEntity {
         lvlScreen.SetActive(false);
         rigid = GetComponent<Rigidbody>();
         magicProj = GetComponent<magicProjectile>();
+        slice = GetComponent<sliceAura>();
         magicMiss = GetComponent<magicMissile>();
         astr = GetComponent<astroid>();
         giant = GetComponent<giantsSpell>();
@@ -146,7 +148,7 @@ public class testCharacter : LivingEntity {
         {
             moveSpeed = moveMentspeed / 10;
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             rigid.velocity = new Vector3(0, 0, 0);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -158,7 +160,7 @@ public class testCharacter : LivingEntity {
             }
             //destinationPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -178,13 +180,17 @@ public class testCharacter : LivingEntity {
 
     void checkInput()
     {
+        if(Input.GetMouseButtonDown(0))
+        {
+            slice.shoot(armorPen,moveMentspeed,mana,attackDamage);
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            charge.shoot(magicPen, cooldownReduction, mana);
+            magicMiss.shoot(magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -219,7 +225,5 @@ public class testCharacter : LivingEntity {
         hpBar.localScale = new Vector3(newXHp, 1, 1);
         float newXMp = (mana / maxMana);
         manaBar.localScale = new Vector3(newXMp, 1, 1);
-        /*float newXXp = (health / maxHealth);
-        xpBar.localScale = new Vector3(newXXp, transform.localScale.y, transform.localScale.z);*/
     }
 }

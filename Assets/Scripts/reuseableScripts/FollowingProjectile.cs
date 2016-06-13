@@ -5,7 +5,6 @@ public class FollowingProjectile : MonoBehaviour
 {
 
     [SerializeField]
-    private LayerMask collisionMask;//layer wich the projectile checks for
     public GameObject _target;
     public GameObject _caster;
     private Vector3 aim;
@@ -19,13 +18,21 @@ public class FollowingProjectile : MonoBehaviour
     public float _projectileSpeed;//the _speed of the projectile >_>
     public float _damage;//the ammount of damg this thing does
     public float _AdOrAp;
+    public float _speed;
 
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, 0.03f);
-        if (transform.isDistanceSmallerThan(_target.transform.position, 1))
+        if (_target != null)
         {
-            OnHitObject();
+            transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speed/100);
+            if (transform.isDistanceSmallerThan(_target.transform.position, 1))
+            {
+                OnHitObject();
+            }
+        }
+        else if(_target == null)
+        {
+            GameObject.Destroy(gameObject);//destroy this object(the projectile)
         }
     }
 

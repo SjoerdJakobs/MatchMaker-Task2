@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\livingWithStats\skils\magicMissile.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\skils\magicProjectile.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\skils\poisonShot.cs" />
+    <Compile Include="Assets\Scripts\livingWithStats\skils\sliceAura.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\skils\stunCage.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\CamScript.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\FallingProjectile.cs" />
