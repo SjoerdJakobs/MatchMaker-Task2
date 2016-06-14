@@ -15,7 +15,7 @@ public class WalkingBomb : LivingEntity
 void Update () {
 	    if(transform.isDistanceSmallerThan(target.position,2))
         {
-            gameObject.selfExplodingObject(100, armorPen, true, 50, attackDamage, 10 ,4);
+            gameObject.selfExplodingObject(100, armorPen, true, 50, attackDamage, 20 ,4);
         }
 	}
 }

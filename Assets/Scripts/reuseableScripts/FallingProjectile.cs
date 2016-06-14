@@ -68,9 +68,9 @@ public class FallingProjectile : MonoBehaviour {
                 {
                     damageableObject.TakeDamg(_damage, _pen, _scaling, _physical, _AdOrAp);//_damage it
                 }
-                gameObject.explosion(_force, 5, true, false);
             }
         }
+        gameObject.explosion(_force, 5, true, false);
         //Debug.Log(hit.collider.gameObject.name);
         GameObject.Destroy(gameObject);//destroy this object(the projectile)
     }
