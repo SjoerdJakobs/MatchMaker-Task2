@@ -18,7 +18,7 @@ public class sliceAura : MonoBehaviour, ISkill
 
     // Update is called once per frame
 
-    public void shoot(float armorPen, float attackSpeed, float mana, float apOrAd)
+    public void shoot(Vector3 target, float armorPen, float attackSpeed, float mana, float apOrAd)
     {
         StartCoroutine(useCooldown(armorPen, attackSpeed, mana, apOrAd));
     }

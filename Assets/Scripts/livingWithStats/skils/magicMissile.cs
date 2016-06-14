@@ -17,7 +17,7 @@ public class magicMissile : MonoBehaviour, ISkill
     private float speed = 10;
     private bool hasShot;
 
-    public void shoot(float magicPen, float cooldownReduction, float mana, float apOrAd)
+    public void shoot(Vector3 target, float magicPen, float cooldownReduction, float mana, float apOrAd)
     {
         StartCoroutine(useCooldown(magicPen, cooldownReduction, mana, apOrAd));
     }

@@ -19,22 +19,22 @@ public class magicProjectile : MonoBehaviour, ISkill {
     private float speed= 30;
     private bool hasShot;
 
-    public void shoot(float magicPen, float cooldownReduction, float mana,float apOrAd)
+    public void shoot(Vector3 target ,float magicPen, float cooldownReduction, float mana,float apOrAd)
     {
-        StartCoroutine(useCooldown(magicPen, cooldownReduction, mana, apOrAd));
+        StartCoroutine(useCooldown(target, magicPen, cooldownReduction, mana, apOrAd));
     }
-    IEnumerator useCooldown(float magicPen, float cooldownReduction, float mana, float apOrAd)
+    IEnumerator useCooldown(Vector3 target, float magicPen, float cooldownReduction, float mana, float apOrAd)
     {
         if (!hasShot && mana >= manaCost)
         {
             IDamageable casterMana = GetComponent<IDamageable>();
             casterMana.changeStat(-manaCost, 14);
             hasShot = true;
-            transform.lookAtMouse(999);
-            Vector3 target = transform.mousePos() + new Vector3(0, 1f, 0);
-            gameObject.skillShotProjectile(magicCube, target, baseDamg, magicPen, false, scaling, apOrAd, range, speed);
+            transform.LookAt(target);
+            Vector3 point = target;
+            gameObject.skillShotProjectile(magicCube, point, baseDamg, magicPen, false, scaling, apOrAd, range, speed);
             Instantiate(magicCube, transform.position + new Vector3(0,1f,0), Quaternion.identity);
-            yield return new WaitForSeconds(cooldown - (cooldown/100*cooldownReduction));
+            yield return new WaitForSeconds(cooldown - ((cooldown/100)*cooldownReduction));
             hasShot = false;
         }
     }

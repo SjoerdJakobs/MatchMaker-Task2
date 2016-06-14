@@ -227,6 +227,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     virtual protected void death()//when would this be used >_>
     {
+        setAndCheckStats();
         giveXp();
         dead = true;
         if (OnDeath != null)

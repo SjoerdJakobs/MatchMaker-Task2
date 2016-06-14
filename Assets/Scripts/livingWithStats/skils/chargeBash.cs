@@ -17,7 +17,7 @@ public class chargeBash : MonoBehaviour, ISkill
         rigid = GetComponent<Rigidbody>();
     }
 
-    public void shoot(float magicPen, float cooldownReduction, float mana, float apOrAd = 0)
+    public void shoot(Vector3 target, float magicPen, float cooldownReduction, float mana, float apOrAd = 0)
     {
         StartCoroutine(useCooldown(cooldownReduction, mana));
     }

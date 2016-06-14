@@ -2,5 +2,5 @@
 
 public interface ISkill
 {
-    void shoot(float pen, float cooldown, float mana, float apOrAd);
+    void shoot(Vector3 target ,float pen, float cooldown, float mana, float apOrAd);
 }

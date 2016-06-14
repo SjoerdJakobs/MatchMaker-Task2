@@ -63,6 +63,7 @@ public class testCharacter : LivingEntity {
     protected override void setAndCheckStats()
     {
         base.setAndCheckStats();
+        changeBars();
         stats.text = "AttackDamage: " + attackDamage.ToString() +
             "\n" + "Armor: " + armor.ToString() +
             "\n" + "MagicRes: " + magicResist.ToString() +
@@ -184,43 +185,44 @@ public class testCharacter : LivingEntity {
 
     void checkInput()
     {
-        if(Input.GetMouseButtonDown(0))
+        Vector3 inputmouse = transform.mousePos() + new Vector3(0, 1f, 0);
+        if (Input.GetMouseButtonDown(0))
         {
-            slice.shoot(armorPen,attackspeed,mana,attackDamage);
+            slice.shoot(inputmouse, armorPen,attackspeed,mana,attackDamage);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
+            magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            magicMiss.shoot(magicPen, cooldownReduction, mana, magicDamage);
+            magicMiss.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            astr.shoot(magicPen, cooldownReduction, mana, magicDamage);
+            astr.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            giant.shoot(magicPen, cooldownReduction, mana);
+            giant.shoot(inputmouse, magicPen, cooldownReduction, mana);
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
+            magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
+            magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
+            magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             TakeDamg(200, armorPen, 80, true, attackDamage);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             TakeDamgOverTime(10, 10, magicPen, 25,false,magicDamage);
-            magicProj.shoot(magicPen, cooldownReduction, mana, magicDamage);
+            magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
         }
     }
     void changeBars ()
