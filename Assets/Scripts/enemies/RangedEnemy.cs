@@ -10,7 +10,6 @@ public class RangedEnemy : LivingEntity
     private magicProjectile magicPro;
 
     private NavMeshAgent agent;
-    [SerializeField]
     private GameObject target;
     private Rigidbody rigid;
 
@@ -26,6 +25,7 @@ public class RangedEnemy : LivingEntity
         agent = GetComponent<NavMeshAgent>();
         magicPro = GetComponent<magicProjectile>();
         rigid = GetComponent<Rigidbody>();
+        target = GameObject.FindGameObjectWithTag("Player");
         if (target != null)
         {
             hasTarget = true;
@@ -66,7 +66,7 @@ public class RangedEnemy : LivingEntity
         {
             if (transform.isDistanceSmallerThan(target.transform.position, range))
             {
-                print(cooldownReduction);
+                //print(cooldownReduction);
                 currentState = State.Attacking;
                 agent.enabled = false;
 

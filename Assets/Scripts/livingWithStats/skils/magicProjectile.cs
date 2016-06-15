@@ -33,7 +33,7 @@ public class magicProjectile : MonoBehaviour, ISkill {
             transform.LookAt(target);
             Vector3 point = target;
             gameObject.skillShotProjectile(magicCube, point, baseDamg, magicPen, false, scaling, apOrAd, range, speed);
-            Instantiate(magicCube, transform.position + new Vector3(0,1f,0), Quaternion.identity);
+            Instantiate(magicCube, new Vector3(transform.position.x,1f, transform.position.z), Quaternion.identity);
             yield return new WaitForSeconds(cooldown - ((cooldown/100)*cooldownReduction));
             hasShot = false;
         }

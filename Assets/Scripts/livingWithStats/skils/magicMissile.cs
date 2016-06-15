@@ -33,7 +33,7 @@ public class magicMissile : MonoBehaviour, ISkill
                 IDamageable casterMana = GetComponent<IDamageable>();
                 casterMana.changeStat(-manaCost, 14);                
                 gameObject.followingProjectile(magicCube, clickedObject, baseDamg, magicPen, false, scaling, apOrAd, speed);
-                Instantiate(magicCube, transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
+                Instantiate(magicCube, new Vector3(transform.position.x, 1f, transform.position.z), Quaternion.identity);
                 yield return new WaitForSeconds(cooldown - (cooldown / 100 * cooldownReduction));
                 hasShot = false;
             }

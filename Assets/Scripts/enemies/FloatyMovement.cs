@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class FloatyMovement : MonoBehaviour {
-
-    [SerializeField]
+    
     private Transform target;
 
     private Rigidbody rigid;
@@ -11,7 +10,9 @@ public class FloatyMovement : MonoBehaviour {
     [SerializeField]
     private float speed;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         rigid = gameObject.GetComponent<Rigidbody>();
 
 	}

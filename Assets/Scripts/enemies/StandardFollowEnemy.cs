@@ -8,7 +8,6 @@ public class StandardFollowEnemy : MonoBehaviour {
 
     private Rigidbody rigid;
 
-    [SerializeField]
     private GameObject target;
 
     [SerializeField]
@@ -22,6 +21,7 @@ public class StandardFollowEnemy : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        target = GameObject.FindGameObjectWithTag("Player");
         rigid = gameObject.GetComponent<Rigidbody>();
         waitForSec = new WaitForSeconds(refreshRate);
         agent = GetComponent<NavMeshAgent>();

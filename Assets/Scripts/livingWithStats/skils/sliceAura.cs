@@ -24,7 +24,7 @@ public class sliceAura : MonoBehaviour, ISkill
     }
 
     void Update () {
-        sliceArea.transform.position = transform.position + new Vector3(0,transform.localScale.y/25, 0);
+        //sliceArea.transform.position = transform.position + new Vector3(0,transform.localScale.y/25, 0);
     }
     IEnumerator useCooldown(float armorpen, float attackSpeed, float mana, float apOrAd)
     {
@@ -33,7 +33,7 @@ public class sliceAura : MonoBehaviour, ISkill
             hasShot = true;
             IDamageable casterMana = GetComponent<IDamageable>();
             gameObject.explosion(1, 5, true, false);
-            sliceArea.transform.localScale = new Vector3(2,0.1f,2);
+            //sliceArea.transform.localScale = new Vector3(2,0.1f,2);
             foreach (RaycastHit i in transform.getWithinSphere(range))
             {
                 IDamageable damageableObject = i.collider.GetComponent<IDamageable>();//check for component idamagable on the hit object
@@ -54,7 +54,7 @@ public class sliceAura : MonoBehaviour, ISkill
             //Debug.Log(hit.collider.gameObject.name);
             yield return new WaitForSeconds(0.1f);
 
-            sliceArea.transform.localScale = new Vector3(0.5f,0.1f,0.5f);
+            //sliceArea.transform.localScale = new Vector3(0.5f,0.1f,0.5f);
             yield return new WaitForSeconds(1 / attackSpeed);
             hasShot = false;
         }

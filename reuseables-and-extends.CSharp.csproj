@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\PointAndClickMovement.cs" />
     <Compile Include="Assets\Scripts\Pouse.cs" />
+    <Compile Include="Assets\Scripts\SpawnSystem.cs" />
     <Compile Include="Assets\Scripts\WalkingBomb.cs" />
     <Compile Include="Assets\Scripts\camScript.cs" />
     <Compile Include="Assets\Scripts\enemies\EnemyMove.cs" />

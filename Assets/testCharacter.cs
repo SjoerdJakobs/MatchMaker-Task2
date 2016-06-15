@@ -24,8 +24,9 @@ public class testCharacter : LivingEntity {
     protected GameObject lvlScreen;
     [SerializeField]
     private Animator anim;
+    private bool skilDamgPhysical;
 
-
+    private ISkill currentSkill;
     private chargeBash charge;
     private magicMissile magicMiss;
     private magicProjectile magicProj;
@@ -34,7 +35,8 @@ public class testCharacter : LivingEntity {
     private astroid astr;
     private sliceAura slice;
     private NavMeshAgent agent;
-    private Vector3 target;   
+    private Vector3 target;
+    private Vector3 inputmouse;
 
     private bool isMoving = false;
     
@@ -77,7 +79,7 @@ public class testCharacter : LivingEntity {
         healthText.text = "health " + health.ToString() + "/" + maxHealth.ToString();
         manaText.text = "mana " + mana.ToString() + "/" + maxMana.ToString();
         xpText.text = "LVL " + Level.ToString() +"         xp " + xp.ToString();
-        print(isLVLing);
+        //print(isLVLing);
         if (isLVLing)
         {
             lvlScreen.SetActive(true);
@@ -186,89 +188,83 @@ public class testCharacter : LivingEntity {
         agent.speed = moveMentspeed/10;
     }
 
-    public void sliceSpell()
+    public void castSpell()
     {
-
-    }
-    public void magicProjectile()
-    {
-
-    }
-    public void magicMissile()
-    {
-
+        anim.SetBool("cast1", false);
+        anim.SetBool("cast2", false);
+        if (skilDamgPhysical)
+        {
+            currentSkill.shoot(inputmouse, armorPen, cooldownReduction, mana, attackDamage);
+        }
+        else
+        {
+            currentSkill.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
+        }
     }
 
     void checkInput()
     {
-        Vector3 inputmouse = transform.mousePos() + new Vector3(0, 1f, 0);
+        inputmouse = transform.mousePos();
         if (Input.GetMouseButtonDown(0))
         {
             slice.shoot(inputmouse, armorPen,attackspeed,mana,attackDamage);
-            StartCoroutine(castSpell("cast2"));
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            StartCoroutine(castSpell("cast1"));
+            currentSkill = magicProj;
+            anim.SetBool("cast1", true);
             agent.Stop();
-            magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            StartCoroutine(castSpell("cast1"));
-            magicMiss.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
+            currentSkill = magicMiss;
+            anim.SetBool("cast1", true);
+            agent.Stop();
             transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            StartCoroutine(castSpell("cast1"));
+            currentSkill = astr;
+            anim.SetBool("cast1", true);
             agent.Stop();
-            astr.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            StartCoroutine(castSpell("cast2"));
-            giant.shoot(inputmouse, magicPen, cooldownReduction, mana);
+            currentSkill = giant;
+            anim.SetBool("cast2", true);
+            agent.Stop();
+            transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            StartCoroutine(castSpell("cast1"));
+            currentSkill = magicProj;
+            anim.SetBool("cast1", true);
             agent.Stop();
-            magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            StartCoroutine(castSpell("cast1"));
+            currentSkill = magicProj;
+            anim.SetBool("cast1", true);
             agent.Stop();
-            magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            StartCoroutine(castSpell("cast1"));
+            currentSkill = magicProj;
+            anim.SetBool("cast1", true);
             agent.Stop();
-            magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
-            TakeDamg(200, armorPen, 80, true, attackDamage);
             transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            StartCoroutine(castSpell("cast1"));
+            currentSkill = magicProj;
+            anim.SetBool("cast1", true);
             agent.Stop();
-            TakeDamgOverTime(10, 10, magicPen, 25,false,magicDamage);
-            magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             transform.lookAtMouse(999);
         }
-    }
-    IEnumerator castSpell(string spell)
-    {
-        print("halp");
-        anim.SetBool(spell, true);
-        yield return new WaitForSeconds(0.2f);
-        anim.SetBool(spell, false);
     }
     void changeBars ()
     {
