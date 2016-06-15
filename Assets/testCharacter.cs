@@ -23,7 +23,7 @@ public class testCharacter : LivingEntity {
     [SerializeField]
     protected GameObject lvlScreen;
     [SerializeField]
-    private Animator _anim;
+    private Animator anim;
 
 
     private chargeBash charge;
@@ -77,7 +77,7 @@ public class testCharacter : LivingEntity {
         healthText.text = "health " + health.ToString() + "/" + maxHealth.ToString();
         manaText.text = "mana " + mana.ToString() + "/" + maxMana.ToString();
         xpText.text = "LVL " + Level.ToString() +"         xp " + xp.ToString();
-        //print(isLVLing);
+        print(isLVLing);
         if (isLVLing)
         {
             lvlScreen.SetActive(true);
@@ -147,6 +147,10 @@ public class testCharacter : LivingEntity {
     {
         if (Input.GetMouseButtonDown(1))
         {
+            if(anim.GetBool("isMoving") != true)
+            {
+                anim.SetBool("isMoving", true);
+            }
             agent.ResetPath();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -157,6 +161,10 @@ public class testCharacter : LivingEntity {
         }
         else if (Input.GetMouseButton(1))
         {
+            if (anim.GetBool("isMoving") != true)
+            {
+                anim.SetBool("isMoving", true);
+            }
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, mask))
@@ -164,6 +172,10 @@ public class testCharacter : LivingEntity {
                 target = transform.mousePos();
                 //print(destinationPosition);
             }
+        }
+        if(transform.isDistanceSmallerThan(agent.destination, 0.5f))
+        {
+            anim.SetBool("isMoving", false);
         }
         float velocity = Vector3.Magnitude(rigid.velocity);
         if (velocity < 2.5f)
@@ -174,49 +186,69 @@ public class testCharacter : LivingEntity {
         agent.speed = moveMentspeed/10;
     }
 
+    public void sliceSpell()
+    {
+
+    }
+    public void magicProjectile()
+    {
+
+    }
+    public void magicMissile()
+    {
+
+    }
+
     void checkInput()
     {
         Vector3 inputmouse = transform.mousePos() + new Vector3(0, 1f, 0);
         if (Input.GetMouseButtonDown(0))
         {
             slice.shoot(inputmouse, armorPen,attackspeed,mana,attackDamage);
+            StartCoroutine(castSpell("cast2"));
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            StartCoroutine(castSpell("cast1"));
             agent.Stop();
             magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            agent.Stop();
+            StartCoroutine(castSpell("cast1"));
             magicMiss.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
+            StartCoroutine(castSpell("cast1"));
             agent.Stop();
             astr.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
+            StartCoroutine(castSpell("cast2"));
             giant.shoot(inputmouse, magicPen, cooldownReduction, mana);
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            StartCoroutine(castSpell("cast1"));
             agent.Stop();
             magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            StartCoroutine(castSpell("cast1"));
             agent.Stop();
             magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            StartCoroutine(castSpell("cast1"));
             agent.Stop();
             magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             TakeDamg(200, armorPen, 80, true, attackDamage);
@@ -224,11 +256,19 @@ public class testCharacter : LivingEntity {
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            StartCoroutine(castSpell("cast1"));
             agent.Stop();
             TakeDamgOverTime(10, 10, magicPen, 25,false,magicDamage);
             magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             transform.lookAtMouse(999);
         }
+    }
+    IEnumerator castSpell(string spell)
+    {
+        print("halp");
+        anim.SetBool(spell, true);
+        yield return new WaitForSeconds(0.2f);
+        anim.SetBool(spell, false);
     }
     void changeBars ()
     {
