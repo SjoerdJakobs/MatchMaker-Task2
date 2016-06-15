@@ -15,7 +15,6 @@ public class PointAndClickMovement : MonoBehaviour {
     [SerializeField]
     private float speed = 10;
     [SerializeField]
-    private float refreshRate;
     private float originalSpeed;
 
     // Use this for initialization

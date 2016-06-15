@@ -22,6 +22,10 @@ public class testCharacter : LivingEntity {
     private Transform hpBar;
     [SerializeField]
     protected GameObject lvlScreen;
+    [SerializeField]
+    private Animator _anim;
+
+
     private chargeBash charge;
     private magicMissile magicMiss;
     private magicProjectile magicProj;
@@ -29,16 +33,11 @@ public class testCharacter : LivingEntity {
     private Rigidbody rigid;
     private astroid astr;
     private sliceAura slice;
-    private Vector3 destinationPosition;
-
-    private float destinationDistance;          
-    private float moveSpeed;
-    private float velocity;
+    private NavMeshAgent agent;
+    private Vector3 target;   
 
     private bool isMoving = false;
-
-    private NavMeshAgent agent;
-
+    
     [SerializeField]
     private LayerMask mask;
 
@@ -47,6 +46,7 @@ public class testCharacter : LivingEntity {
         base.Start();
 
         lvlScreen.SetActive(false);
+        agent = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody>();
         magicProj = GetComponent<magicProjectile>();
         slice = GetComponent<sliceAura>();
@@ -54,10 +54,8 @@ public class testCharacter : LivingEntity {
         astr = GetComponent<astroid>();
         giant = GetComponent<giantsSpell>();
         charge = GetComponent<chargeBash>();
-        destinationPosition = transform.position;
         Time.timeScale = 1;
         isLVLing = true;
-        velocity = 1000;
     }
 
     protected override void setAndCheckStats()
@@ -138,50 +136,43 @@ public class testCharacter : LivingEntity {
     {
         checkInput();
         changeBars();
+        moveMent();
     }
     void FixedUpdate()
     {
-        destinationDistance = Vector3.Distance(destinationPosition, transform.position);
-        if (destinationDistance < 0.5f/* && isMoving == true*/)
-        {
-            moveSpeed = 0;
-            rigid.velocity =    new Vector3(0,0,0);
-        }
-        else if (destinationDistance > 0.5f)
-        {
-            moveSpeed = moveMentspeed / 10;
-        }
+        rigid.limitVelocityHard3D(moveMentspeed/10);
+    }
+
+    void moveMent()
+    {
         if (Input.GetMouseButtonDown(1))
         {
-            rigid.velocity = new Vector3(0, 0, 0);
+            agent.ResetPath();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            transform.lookAtMouse(999);
             if (Physics.Raycast(ray, out hit, mask))
             {
-                destinationPosition = transform.mousePos();
+                target = transform.mousePos();
             }
-            //destinationPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
         else if (Input.GetMouseButton(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            transform.lookAtMouse(999);
             if (Physics.Raycast(ray, out hit, mask))
             {
-                destinationPosition = transform.mousePos();
+                target = transform.mousePos();
                 //print(destinationPosition);
             }
-            //destinationPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-
-        //transform.lookAtMouse(moveSpeed);
-        rigid.AddForce(((destinationPosition - transform.position).normalized*moveSpeed), ForceMode.Impulse);// = Vector3.Lerp(transform.position, destinationPosition, (moveMentspeed) * Time.fixedDeltaTime);
-        rigid.limitVelocityHard3D(moveMentspeed/10);
-    
+        float velocity = Vector3.Magnitude(rigid.velocity);
+        if (velocity < 2.5f)
+        {
+            rigid.velocity = Vector3.zero;
+        }
+        agent.SetDestination(target);
+        agent.speed = moveMentspeed/10;
     }
-
 
     void checkInput()
     {
@@ -192,15 +183,21 @@ public class testCharacter : LivingEntity {
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            agent.Stop();
             magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
+            transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
+            agent.Stop();
             magicMiss.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
+            transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
+            agent.Stop();
             astr.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
+            transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -208,21 +205,29 @@ public class testCharacter : LivingEntity {
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            agent.Stop();
             magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
+            transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            agent.Stop();
             magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
+            transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            agent.Stop();
             magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
             TakeDamg(200, armorPen, 80, true, attackDamage);
+            transform.lookAtMouse(999);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            agent.Stop();
             TakeDamgOverTime(10, 10, magicPen, 25,false,magicDamage);
             magicProj.shoot(inputmouse, magicPen, cooldownReduction, mana, magicDamage);
+            transform.lookAtMouse(999);
         }
     }
     void changeBars ()

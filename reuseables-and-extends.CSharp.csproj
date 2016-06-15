@@ -58,6 +58,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -70,7 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PointAndClickMovement.cs" />
     <Compile Include="Assets\Scripts\Pouse.cs" />
     <Compile Include="Assets\Scripts\WalkingBomb.cs" />
@@ -79,11 +84,9 @@
     <Compile Include="Assets\Scripts\enemies\FloatyMovement.cs" />
     <Compile Include="Assets\Scripts\enemies\RangedEnemy.cs" />
     <Compile Include="Assets\Scripts\enemies\StandardFollowEnemy.cs" />
+    <Compile Include="Assets\Scripts\enemies\astroidCaster.cs" />
+    <Compile Include="Assets\Scripts\enemies\magicMissileCaster.cs" />
     <Compile Include="Assets\Scripts\extensions\Extensions.cs" />
-    <Compile Include="Assets\Scripts\interfaces\IWeapon.cs" />
-    <Compile Include="Assets\Scripts\interfaces\Weapons\HandGun.cs" />
-    <Compile Include="Assets\Scripts\interfaces\Weapons\NuclearMissileLauncher.cs" />
-    <Compile Include="Assets\Scripts\interfaces\Weapons\ShotGun.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\IDamageable.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\ISkill.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\LivingEntity.cs" />
@@ -99,14 +102,11 @@
     <Compile Include="Assets\Scripts\livingWithStats\skils\poisonShot.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\skils\sliceAura.cs" />
     <Compile Include="Assets\Scripts\livingWithStats\skils\stunCage.cs" />
-    <Compile Include="Assets\Scripts\reuseableScripts\CamScript.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\FallingProjectile.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\FollowingProjectile.cs" />
-    <Compile Include="Assets\Scripts\reuseableScripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\TransformClickMove.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\rotateObject.cs" />
-    <Compile Include="Assets\bugged\graplingHookClean.cs" />
     <Compile Include="Assets\explosion.cs" />
     <Compile Include="Assets\testCharacter.cs" />
     <Compile Include="Assets\testEnemy.cs" />
