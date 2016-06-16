@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: 9c3f40e6ebf35f3488578062b2098815
+timeCreated: 1465818668
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: matchmaker_skull_lowpoly_UV:ikHandle3
+    100004: matchmaker_skull_lowpoly_UV:ikHandle4
+    100006: matchmaker_skull_lowpoly_UV:joint1
+    100008: matchmaker_skull_lowpoly_UV:joint10
+    100010: matchmaker_skull_lowpoly_UV:joint11
+    100012: matchmaker_skull_lowpoly_UV:joint12
+    100014: matchmaker_skull_lowpoly_UV:joint13
+    100016: matchmaker_skull_lowpoly_UV:joint14
+    100018: matchmaker_skull_lowpoly_UV:joint15
+    100020: matchmaker_skull_lowpoly_UV:joint16
+    100022: matchmaker_skull_lowpoly_UV:joint17
+    100024: matchmaker_skull_lowpoly_UV:joint18
+    100026: matchmaker_skull_lowpoly_UV:joint19
+    100028: matchmaker_skull_lowpoly_UV:joint2
+    100030: matchmaker_skull_lowpoly_UV:joint20
+    100032: matchmaker_skull_lowpoly_UV:joint3
+    100034: matchmaker_skull_lowpoly_UV:joint4
+    100036: matchmaker_skull_lowpoly_UV:joint5
+    100038: matchmaker_skull_lowpoly_UV:joint6
+    100040: matchmaker_skull_lowpoly_UV:joint7
+    100042: matchmaker_skull_lowpoly_UV:joint8
+    100044: matchmaker_skull_lowpoly_UV:joint9
+    100046: matchmaker_skull_lowpoly_UV:matchmaker_skull_lowpoly_UV:pSphere4
+    100048: matchmaker_skull_lowpoly_UV:matchmaker_skull_lowpoly_UV:transform1
+    100050: matchmaker_skull_lowpoly_UV:matchmaker_skull_lowpoly_UV:transform2
+    100052: matchmaker_skull_lowpoly_UV:matchmaker_skull_lowpoly_UV:transform3
+    100054: matchmaker_skull_lowpoly_UV:pPipe2
+    100056: matchmaker_skull_lowpoly_UV:pSphere4
+    100058: matchmaker_skull_lowpoly_UV:pSphere5
+    400000: //RootNode
+    400002: matchmaker_skull_lowpoly_UV:ikHandle3
+    400004: matchmaker_skull_lowpoly_UV:ikHandle4
+    400006: matchmaker_skull_lowpoly_UV:joint1
+    400008: matchmaker_skull_lowpoly_UV:joint10
+    400010: matchmaker_skull_lowpoly_UV:joint11
+    400012: matchmaker_skull_lowpoly_UV:joint12
+    400014: matchmaker_skull_lowpoly_UV:joint13
+    400016: matchmaker_skull_lowpoly_UV:joint14
+    400018: matchmaker_skull_lowpoly_UV:joint15
+    400020: matchmaker_skull_lowpoly_UV:joint16
+    400022: matchmaker_skull_lowpoly_UV:joint17
+    400024: matchmaker_skull_lowpoly_UV:joint18
+    400026: matchmaker_skull_lowpoly_UV:joint19
+    400028: matchmaker_skull_lowpoly_UV:joint2
+    400030: matchmaker_skull_lowpoly_UV:joint20
+    400032: matchmaker_skull_lowpoly_UV:joint3
+    400034: matchmaker_skull_lowpoly_UV:joint4
+    400036: matchmaker_skull_lowpoly_UV:joint5
+    400038: matchmaker_skull_lowpoly_UV:joint6
+    400040: matchmaker_skull_lowpoly_UV:joint7
+    400042: matchmaker_skull_lowpoly_UV:joint8
+    400044: matchmaker_skull_lowpoly_UV:joint9
+    400046: matchmaker_skull_lowpoly_UV:matchmaker_skull_lowpoly_UV:pSphere4
+    400048: matchmaker_skull_lowpoly_UV:matchmaker_skull_lowpoly_UV:transform1
+    400050: matchmaker_skull_lowpoly_UV:matchmaker_skull_lowpoly_UV:transform2
+    400052: matchmaker_skull_lowpoly_UV:matchmaker_skull_lowpoly_UV:transform3
+    400054: matchmaker_skull_lowpoly_UV:pPipe2
+    400056: matchmaker_skull_lowpoly_UV:pSphere4
+    400058: matchmaker_skull_lowpoly_UV:pSphere5
+    4300000: matchmaker_skull_lowpoly_UV:matchmaker_skull_lowpoly_UV:pSphere4
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: matchmaker_skull_lowpoly_UV:matchmaker_skull_lowpoly_UV:pSphere4
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

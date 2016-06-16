@@ -11,7 +11,7 @@ public class WalkingBomb : LivingEntity
     protected override void Start()
     {
         base.Start();
-        followTarget = GameObject.FindGameObjectWithTag("dwarf").transform;
+        followTarget = GameObject.FindGameObjectWithTag("Player").transform;
         target = followTarget;
         
     }
