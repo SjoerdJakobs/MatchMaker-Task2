@@ -18,6 +18,8 @@ public class astroidCaster : LivingEntity
     private float range = 5;
     [SerializeField]
     private float refreshRate = .25f;
+    private float playerLVL;
+    private float upgradeRate;
 
     bool hasTarget;
 
@@ -27,10 +29,32 @@ public class astroidCaster : LivingEntity
         astr = GetComponent<astroid>();
         rigid = GetComponent<Rigidbody>();
         target = GameObject.FindGameObjectWithTag("Player");
+        playerLVL = target.GetComponent<LivingEntity>()._publicLVL;
+        setStats();
         if (target != null)
         {
             hasTarget = true;
         }
+    }
+    void setStats()
+    {
+        Level = playerLVL;
+        upgradeRate = playerLVL * 1.75f;
+        xpOnDeath = xpOnDeath * upgradeRate;
+        maxHealth = maxHealth * upgradeRate;
+        healthRegen = healthRegen * upgradeRate; ;
+        maxMana = maxMana * upgradeRate;
+        manaRegen = manaRegen * upgradeRate;
+        armor = armor * upgradeRate;
+        armorPen = armorPen * upgradeRate;
+        magicResist = magicResist * upgradeRate;
+        magicPen = magicPen * upgradeRate;
+        moveMentspeed = moveMentspeed * upgradeRate;
+        tenacity = tenacity * upgradeRate;
+        sizeMod += sizeMod * 0.05f;
+        attackDamage = attackDamage * upgradeRate;
+        magicDamage = magicDamage * upgradeRate;
+        cooldownReduction = cooldownReduction * upgradeRate;
         agent.speed = moveMentspeed;
     }
 

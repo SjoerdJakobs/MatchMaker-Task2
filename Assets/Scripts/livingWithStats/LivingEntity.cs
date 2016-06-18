@@ -26,6 +26,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     [SerializeField] protected int powerPointsPerLVL = 10;
     [SerializeField] protected bool canLVL = false;
 
+    public float _publicLVL;
 
     protected bool isLVLing = false;
     protected int powerPoints;
@@ -54,6 +55,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     }
     protected virtual void setAndCheckStats()
     {
+        _publicLVL = Level;
         gameObject.transform.localScale = new Vector3(1 * sizeMod, 1 * sizeMod, 1 * sizeMod);
         if(health > maxHealth)
         {
