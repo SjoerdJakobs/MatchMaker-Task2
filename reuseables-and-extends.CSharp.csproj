@@ -101,7 +101,6 @@
     <Compile Include="Assets\Scripts\reuseableScripts\FallingProjectile.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\FollowingProjectile.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\Projectile.cs" />
-    <Compile Include="Assets\Scripts\reuseableScripts\TransformClickMove.cs" />
     <Compile Include="Assets\Scripts\reuseableScripts\rotateObject.cs" />
     <Compile Include="Assets\explosion.cs" />
     <Compile Include="Assets\testCharacter.cs" />
